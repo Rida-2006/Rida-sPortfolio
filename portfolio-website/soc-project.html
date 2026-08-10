@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SOC and Threat Detection Home Lab project by Rida Fathima.">
+  <title>SOC & Threat Detection Home Lab | Rida Fathima</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .project-page-header{position:sticky;top:0;z-index:10;background:#0b1827;color:#fff}.project-page-nav{min-height:76px;display:flex;align-items:center;justify-content:space-between}.project-page-nav a{text-decoration:none}.back-link{font-weight:600}.case-hero{padding:140px 0 80px;color:#fff;background:linear-gradient(135deg,#0b1827,#142840)}.case-hero h1{max-width:900px;margin:12px 0 24px;font:700 clamp(2.7rem,7vw,5.4rem)/1.08 var(--serif)}.case-lead{max-width:780px;color:#d1d8de;font-size:1.18rem}.case-image{width:100%;margin-top:50px;border:1px solid rgba(255,255,255,.16);box-shadow:var(--shadow)}.case-section{padding:90px 0}.case-section.alt{background:#fff}.case-grid{display:grid;grid-template-columns:.65fr 1.35fr;gap:80px}.case-grid h2{margin:0;color:var(--navy);font:700 clamp(2rem,4vw,3.2rem)/1.2 var(--serif)}.case-content h3{margin:32px 0 8px;font:700 1.2rem var(--serif)}.case-content h3:first-child{margin-top:0}.architecture{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:14px;align-items:center;margin:32px 0}.architecture div{padding:22px 15px;text-align:center;color:#fff;background:var(--navy)}.architecture span{font-size:1.5rem;color:var(--gold)}.skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}.skill-card{padding:24px;background:#f4f2ed;border-top:4px solid var(--gold)}.skill-card h3{margin:0 0 6px}.outcome{padding:80px 0;color:#fff;background:var(--navy)}.outcome h2{color:#fff}@media(max-width:800px){.case-grid{grid-template-columns:1fr;gap:30px}.skill-grid{grid-template-columns:1fr}.architecture{grid-template-columns:1fr}.architecture span{transform:rotate(90deg)}} 
+  </style>
+</head>
+<body>
+  <header class="project-page-header">
+    <nav class="project-page-nav container">
+      <a class="logo" href="index.html">RIDA FATHIMA</a>
+      <a class="back-link" href="index.html#projects">← Back to portfolio</a>
+    </nav>
+  </header>
+  <main>
+    <section class="case-hero">
+      <div class="container">
+        <p class="section-kicker light">CYBERSECURITY · FEATURED PROJECT</p>
+        <h1>SOC &amp; Threat Detection Home Lab</h1>
+        <p class="case-lead">A virtual Security Operations Center designed to build practical experience in centralized endpoint monitoring, SIEM operations, security event collection, networking, and technical troubleshooting.</p>
+        <img class="case-image" src="images/soc-lab.png" alt="Oracle VirtualBox configuration showing the Ubuntu SOC lab and Windows 11 endpoint">
+      </div>
+    </section>
+    <section class="case-section">
+      <div class="container case-grid">
+        <div><p class="section-kicker">PROJECT OVERVIEW</p><h2>The Challenge</h2></div>
+        <div class="case-content">
+          <p>The goal was to move beyond theoretical cybersecurity concepts by designing and configuring an isolated monitoring environment. The lab needed Windows and Linux systems, reliable virtual networking, centralized security visibility, and a foundation for future attack simulations and investigations.</p>
+          <h3>My approach</h3>
+          <p>I deployed and configured the virtual machines in Oracle VirtualBox, administered Windows 11 and Ubuntu, connected the systems through NAT and host-only networking, and used Wazuh as the SIEM and endpoint monitoring platform.</p>
+          <div class="architecture"><div>Windows 11<br>Endpoint</div><span>→</span><div>VirtualBox<br>Network</div><span>→</span><div>Wazuh<br>SIEM</div></div>
+        </div>
+      </div>
+    </section>
+    <section class="case-section alt">
+      <div class="container case-grid">
+        <div><p class="section-kicker">IMPLEMENTATION</p><h2>How I Built It</h2></div>
+        <div class="case-content">
+          <h3>Virtualized infrastructure</h3><p>Created Ubuntu and Windows 11 virtual machines and allocated CPU, memory, storage, and network resources to support the SOC environment.</p>
+          <h3>Endpoint and SIEM configuration</h3><p>Configured Ubuntu networking, prepared the Windows workstation as a monitored enterprise-style endpoint, and deployed Wazuh to centralize endpoint events, alerts, and security visibility.</p>
+          <h3>Isolated virtual networking</h3><p>Worked with NAT, host-only adapters, IP addressing, Linux interfaces, Windows networking, and connectivity testing to enable controlled communication between systems.</p>
+          <h3>Validation and troubleshooting</h3><p>Diagnosed boot configuration, storage capacity, resource-allocation, and network-interface issues. Successful access to Windows 11, Ubuntu, and Wazuh confirmed the core infrastructure was operational.</p>
+        </div>
+      </div>
+    </section>
+    <section class="case-section">
+      <div class="container">
+        <p class="section-kicker">CYBERSECURITY SKILLS GAINED</p>
+        <h2 style="color:var(--navy);font:700 clamp(2rem,4vw,3.2rem)/1.2 var(--serif)">Practical capabilities developed</h2>
+        <div class="skill-grid">
+          <article class="skill-card"><h3>SIEM Operations</h3><p>Wazuh deployment, centralized visibility, event collection, security alerts, and monitoring concepts.</p></article>
+          <article class="skill-card"><h3>Endpoint Monitoring</h3><p>Windows and Linux endpoint visibility, system-event collection, and security monitoring foundations.</p></article>
+          <article class="skill-card"><h3>Log &amp; Event Analysis</h3><p>Understanding centralized logs, security events, alert context, and investigation workflows.</p></article>
+          <article class="skill-card"><h3>Network Security</h3><p>Virtual segmentation, NAT and host-only networks, IP addressing, adapters, and connectivity validation.</p></article>
+          <article class="skill-card"><h3>Systems Administration</h3><p>Hands-on Windows 11, Ubuntu Linux, command-line, storage, boot, and resource configuration.</p></article>
+          <article class="skill-card"><h3>Security Troubleshooting</h3><p>Diagnosing VM boot failures, Linux interfaces, network communication, and resource limitations.</p></article>
+          <article class="skill-card"><h3>SOC Architecture</h3><p>Designing an isolated monitoring environment connecting endpoints to a centralized SIEM.</p></article>
+          <article class="skill-card"><h3>Virtualization</h3><p>Oracle VirtualBox deployment, virtual hardware allocation, snapshots, storage, and networking.</p></article>
+          <article class="skill-card"><h3>Technical Documentation</h3><p>Documenting architecture, implementation phases, troubleshooting, outcomes, and future enhancements.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="outcome">
+      <div class="container case-grid">
+        <div><p class="section-kicker light">OUTCOME</p><h2>Functional SOC Foundation</h2></div>
+        <div><p>The completed lab established an operational foundation for centralized endpoint monitoring and future SOC exercises. It can be expanded with failed-login detection, Nmap reconnaissance, EICAR testing, Wireshark analysis, Suricata, custom Wazuh rules, MITRE ATT&amp;CK mapping, and incident-response exercises.</p><p><strong>Future workflow:</strong> Attack → Detection → Alert → Investigation → Response</p></div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="container footer-content"><p>© <span id="year"></span> Rida Fathima</p><a href="index.html#projects">Back to portfolio ↑</a></div></footer>
+  <script>document.querySelector('#year').textContent=new Date().getFullYear();</script>
+</body>
+</html>
