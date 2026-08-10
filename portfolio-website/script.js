@@ -31,3 +31,4 @@ document.querySelectorAll('.reveal').forEach((element) => observer.observe(eleme
 document.querySelector('#year').textContent = new Date().getFullYear();
 window.addEventListener('scroll', updateHeader, { passive: true });
 updateHeader();
+
