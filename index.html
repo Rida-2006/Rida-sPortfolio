@@ -1,231 +1,217 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Rida Fathima, Information Systems Engineering student specializing in Data Security at Humber Polytechnic.">
-  <title>Rida Fathima | Portfolio</title>
-  <style>
-    :root {
-      color-scheme: dark;
-      --page: #0d1011;
-      --panel: #13191a;
-      --text: #f1e9d9;
-      --muted: #b8c0c0;
-      --gold: #e5c68b;
-      --line: #343b37;
-      --mono: ui-monospace, Consolas, monospace;
-    }
-
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: var(--page);
-      color: var(--text);
-      font: 1rem/1.6 system-ui, sans-serif;
-    }
-
-    main { width: min(1200px, 92%); margin: 0 auto; }
-    header { padding: clamp(3rem, 9vw, 7rem) 0 3rem; }
-    h1, h2, h3, p { margin: 0; }
-    h1 { font-size: clamp(2.75rem, 8vw, 6rem); line-height: 1; letter-spacing: -.055em; }
-    h2 { margin-bottom: 1rem; font-size: 1.6rem; }
-    h3 { font-size: 1.3rem; line-height: 1.2; }
-    p { color: var(--muted); }
-    a { color: var(--text); text-underline-offset: .28em; }
-    a:hover { color: var(--gold); }
-    :focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
-
-    .intro { max-width: 52ch; margin-top: 1rem; }
-    .rotation {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: .6rem 1rem;
-      margin-top: 1.2rem;
-      color: var(--gold);
-      font-family: var(--mono);
-    }
-    button {
-      padding: .35rem .7rem;
-      border: 1px solid #706248;
-      border-radius: .25rem;
-      background: transparent;
-      color: var(--text);
-      font: inherit;
-      cursor: pointer;
-    }
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-      clip-path: inset(50%);
-      white-space: nowrap;
-    }
-
-    section { margin-bottom: 3rem; }
-    .feature, .card {
-      border: 1px solid var(--line);
-      border-radius: .45rem;
-      background: var(--panel);
-    }
-    .feature {
-      display: grid;
-      grid-template-columns: 1fr 1.1fr;
-      overflow: hidden;
-    }
-    .diagram {
-      display: grid;
-      justify-items: center;
-      align-content: center;
-      gap: .45rem;
-      min-height: 370px;
-      padding: 2rem 1rem;
-      border-inline-end: 1px solid var(--line);
-      background:
-        linear-gradient(#ffffff06 1px, transparent 1px) 0 0 / 40px 40px,
-        linear-gradient(90deg, #ffffff06 1px, transparent 1px) 0 0 / 40px 40px,
-        radial-gradient(ellipse at center, #292231, #181713 80%);
-      text-align: center;
-    }
-    .diagram svg { width: 100px; margin: 1rem 0; }
-    .label, .step, .tag { font: .75rem/1.4 var(--mono); }
-    .label { color: var(--gold); letter-spacing: .1em; text-transform: uppercase; }
-    .step, .tag { border: 1px solid #706248; border-radius: .2rem; padding: .35rem .65rem; }
-    .feature-copy { display: grid; align-content: center; gap: 1rem; padding: clamp(1.4rem, 4vw, 3rem); }
-    .feature-copy h3 { font-size: clamp(2rem, 4vw, 3rem); }
-    .tags, .links { display: flex; flex-wrap: wrap; gap: .5rem 1rem; }
-    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 1rem; }
-    .card { display: grid; align-content: start; gap: .6rem; padding: 1.25rem; }
-    footer { padding: 1.5rem 0 3rem; border-top: 1px solid var(--line); }
-
-    @media (max-width: 680px) {
-      .feature, .grid { grid-template-columns: 1fr; }
-      .diagram {
-        min-height: 0;
-        border-inline-end: 0;
-        border-bottom: 1px solid var(--line);
-      }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Rida Fathima, Information Systems Engineering student specializing in Data Security at Humber Polytechnic.">
+<title>Rida Fathima | Portfolio</title>
+<style>
+:root {
+  color-scheme: light;
+  --page:#efebe5; --text:#37263e; --muted:#65566e; --accent:#765986;
+  --on-accent:#fff; --surface:#f8f4ebee; --card:#ffffff44; --edge:#fffc;
+  --line:#d8cbe0; --glow:#b594c4; --shadow:#50395b24;
+}
+:root[data-theme="dark"] {
+  color-scheme:dark;
+  --page:#1c1722; --text:#f7eef6; --muted:#d2bedc; --accent:#c6add6;
+  --on-accent:#261b2e; --surface:#251b2eed; --card:#31263b88; --edge:#b9a4c340;
+  --line:#b9a4c34d; --glow:#785b8b; --shadow:#08050c55;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0; min-height:100vh; color:var(--text); font:1rem/1.55 system-ui,sans-serif;
+  background:radial-gradient(ellipse at 9% 6%, var(--glow), transparent 34%),
+    radial-gradient(ellipse at 92% 92%, var(--glow), transparent 32%), var(--page);
+}
+a { color:inherit; text-underline-offset:.2em; }
+button { font:inherit; color:inherit; cursor:pointer; }
+:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+[hidden] { display:none !important; }
+.layout {
+  display:grid; grid-template-columns:280px minmax(0,1fr); align-items:start;
+  gap:18px; width:min(1032px, calc(100% - 24px)); margin:16px auto 0;
+}
+.panel {
+  border:1px solid var(--edge); border-radius:28px; box-shadow:0 14px 34px var(--shadow);
+  background:radial-gradient(ellipse at 55% 92%, var(--glow), transparent 40%), var(--surface);
+}
+.profile {
+  padding:28px 22px; text-align:center;
+  background:radial-gradient(ellipse at 8% 30%, var(--glow), transparent 68%), var(--surface);
+}
+.portrait {
+  display:block; width:150px; height:150px; object-fit:cover; object-position:center 35%;
+  margin:0 auto 14px; border:5px solid var(--edge); border-radius:35px;
+}
+h1,h2,h3,p { margin:0; }
+h1,h2,h3 { font-family:Georgia,serif; line-height:1.17; }
+h1 { font-size:1.75rem; }
+.subtitle {
+  margin:.2rem 0 .8rem; color:var(--muted); font-size:.76rem;
+  font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+}
+.profile-links { display:grid; gap:11px; text-align:left; }
+.profile-links a { display:block; border:1px solid var(--line); border-radius:16px; padding:9px 13px; text-decoration:none; }
+.profile-links small { display:block; color:var(--muted); text-transform:uppercase; }
+.profile-links a:hover,.nav a:hover,.outline:hover { background:var(--card); text-decoration:underline; }
+.pill { display:inline-block; border-radius:999px; padding:.7rem 1.45rem; background:var(--accent); color:var(--on-accent); font-weight:650; text-decoration:none; }
+.profile .pill { margin-top:20px; }
+.content { padding:22px 28px 30px; min-height:500px; }
+.nav { display:flex; flex-wrap:wrap; justify-content:flex-end; align-items:center; gap:4px; margin-bottom:24px; }
+.nav a,.outline { border-radius:999px; padding:.45rem .8rem; font-size:.9rem; text-decoration:none; }
+.nav a[aria-current="page"] { background:var(--accent); color:var(--on-accent); }
+.outline { background:transparent; border:1px solid var(--line); }
+#theme { width:39px; height:39px; padding:0; margin-left:3px; }
+h2 { font-size:clamp(1.8rem,4vw,2rem); }
+h2::after { content:""; display:block; width:40px; height:5px; margin:10px 0 20px; border-radius:5px; background:var(--accent); }
+h3 { font-size:1.3rem; }
+.lead { color:var(--muted); font-size:1.08rem; }
+.rotation { display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px; margin:12px 0 30px; font-weight:700; }
+.rotation button { padding:.16rem .75rem; font-size:.78rem; }
+.sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,185px),1fr)); gap:14px; margin-top:16px; }
+.card { padding:18px 19px; border:1px solid var(--edge); border-radius:21px; background:var(--card); }
+.card h3,.card h4 { margin:0; font:inherit; font-weight:650; }
+.card p { margin-top:5px; color:var(--muted); font-size:.9rem; }
+.card a { display:inline-block; margin-top:.55rem; font-size:.9rem; font-weight:650; }
+.contact { display:flex; flex-wrap:wrap; gap:14px 20px; margin-top:16px; }
+footer { width:min(1032px,calc(100% - 24px)); margin:30px auto; color:var(--muted); text-align:center; font-size:.9rem; }
+@media (max-width:680px) {
+  .layout { grid-template-columns:1fr; }
+  .nav { justify-content:flex-start; margin-bottom:20px; }
+  .content { padding:18px; min-height:0; }
+  .profile-links { grid-template-columns:1fr 1fr; }
+}
+</style>
 </head>
 <body>
-  <main>
-    <header>
-      <h1>Rida Fathima</h1>
-      <p class="intro">Information Systems Engineering student specializing in Data Security at Humber Polytechnic.</p>
-      <div class="rotation">
-        <span class="sr-only">Software projects, cybersecurity, cloud computing, and Women in Engineering.</span>
-        <span id="focus" aria-hidden="true">Software projects</span>
-        <button id="rotation-toggle" type="button" hidden>Pause rotating text</button>
+<div class="layout">
+  <aside class="profile panel" aria-label="Profile">
+    <img class="portrait" src="images/profile.webp" width="150" height="150" alt="Rida Fathima">
+    <h1>Rida Fathima</h1>
+    <p class="subtitle">Information Systems Engineering Student</p>
+    <div class="profile-links">
+      <a href="https://www.linkedin.com/in/rida-fathima-204228314/"><small>LinkedIn</small>View my profile</a>
+      <a href="https://github.com/Rida-2006?tab=repositories"><small>GitHub</small>See my code</a>
+    </div>
+    <a class="pill" href="assets/Rida-Fathima-Resume.pdf" download>Download Resume</a>
+  </aside>
+  <main class="content panel">
+    <nav class="nav" aria-label="Portfolio sections">
+      <a href="#about" data-section="about">About</a>
+      <a href="#resume" data-section="resume">Resume</a>
+      <a href="#projects" data-section="projects">Projects</a>
+      <a href="#contact" data-section="contact">Contact</a>
+      <button class="outline" id="theme" type="button" aria-label="Dark theme" aria-pressed="false" hidden>☾</button>
+    </nav>
+    <section id="about" aria-labelledby="about-title">
+      <h2 id="about-title">About Me</h2>
+      <p class="lead">Information Systems Engineering student specializing in Data Security at Humber Polytechnic.</p>
+      <div class="rotation" id="rotation" hidden>
+        <span class="sr-only">Software projects, data security, cloud computing, and Women in Engineering.</span>
+        <span id="role" aria-hidden="true">Software projects</span>
+        <button class="outline" id="pause" type="button">Pause</button>
       </div>
-    </header>
-
-    <section aria-labelledby="projects-heading">
-      <h2 id="projects-heading">Featured projects</h2>
-      <article class="feature">
-        <div class="diagram" role="img" aria-label="Honeyguard lab architecture. An approved test produces a honeypot response, followed by response validation and event streaming.">
-          <span class="label" aria-hidden="true">Honeyguard lab architecture</span>
-          <svg viewBox="0 0 100 112" aria-hidden="true">
-            <path d="M50 6 92 31v50l-42 25L8 81V31Z"
-              fill="none" stroke="currentColor" stroke-width="8"/>
-            <text x="50" y="72" text-anchor="middle" fill="currentColor"
-              font-family="monospace" font-size="40">H</text>
-          </svg>
-          <span class="step" aria-hidden="true">APPROVED TEST</span>
-          <span aria-hidden="true">↓</span>
-          <span class="step" aria-hidden="true">HONEYPOT RESPONSE</span>
-          <span aria-hidden="true">↓</span>
-          <span class="step" aria-hidden="true">VALIDATION + EVENT STREAM</span>
-        </div>
-        <div class="feature-copy">
-          <span class="label">Cybersecurity lab project</span>
-          <h3>Honeyguard</h3>
-          <p>Contributed to a controlled lab panel that validates HTTP responses and streams execution events. A separate application uses honeypot evidence for monitoring and reporting.</p>
-          <div class="tags">
-            <span class="tag">Python</span>
-            <span class="tag">FastAPI</span>
-            <span class="tag">WebSockets</span>
-            <span class="tag">React</span>
-          </div>
-        </div>
-      </article>
-
-      <div class="grid">
-        <article class="card">
-          <h3>GACI Online</h3>
-          <p>Software for faculty.</p>
-        </article>
-        <article class="card">
-          <h3>UmmahConnect</h3>
-          <p>Winning project at TechNisaHacks.</p>
-          <a href="https://rida-2006.github.io/ummahconnect/">View UmmahConnect ↗</a>
-        </article>
-        <article class="card">
-          <h3>Ornibot</h3>
-          <a href="https://rida-2006.github.io/Ornibot-The-Robo-butterfly/">View Ornibot ↗</a>
-        </article>
+      <h3>What I'm Doing</h3>
+      <div class="cards">
+        <article class="card"><h4><span aria-hidden="true">🔐</span> Data Security</h4><p>My specialization at Humber Polytechnic.</p></article>
+        <article class="card"><h4><span aria-hidden="true">☁️</span> Cloud Computing</h4><p>Lab Assistant at the FAST Cloud Computing Lab.</p></article>
+        <article class="card"><h4><span aria-hidden="true">💻</span> Software Projects</h4><p>Honeyguard, GACI Online, UmmahConnect and Ornibot.</p></article>
+        <article class="card"><h4><span aria-hidden="true">👩‍💻</span> Women in Engineering</h4><p>President.</p></article>
       </div>
     </section>
-
-    <section aria-labelledby="experience-heading">
-      <h2 id="experience-heading">Experience &amp; leadership</h2>
-      <div class="grid">
-        <article class="card">
-          <h3>Lab Assistant</h3>
-          <p>FAST Cloud Computing Lab</p>
-        </article>
-        <article class="card">
-          <h3>President</h3>
-          <p>Women in Engineering</p>
-        </article>
+    <section id="resume" aria-labelledby="resume-title">
+      <h2 id="resume-title">Resume</h2>
+      <div class="cards">
+        <article class="card"><h3>Education</h3><p>Information Systems Engineering, Data Security · Humber Polytechnic</p></article>
+        <article class="card"><h3>Experience</h3><p>Lab Assistant · FAST Cloud Computing Lab</p></article>
+        <article class="card"><h3>Leadership</h3><p>President · Women in Engineering</p></article>
+      </div>
+      <p class="contact"><a href="assets/Rida-Fathima-Resume.pdf" download>Download resume (PDF)</a></p>
+    </section>
+    <section id="projects" aria-labelledby="projects-title">
+      <h2 id="projects-title">Featured Projects</h2>
+      <div class="cards">
+        <article class="card"><h3>GACI Online</h3><p>Software for faculty.</p></article>
+        <article class="card"><h3>Honeyguard</h3><p>Cybersecurity lab project for validating HTTP responses and streaming test events.</p></article>
+        <article class="card"><h3>UmmahConnect</h3><p>Winning project at TechNisaHacks.</p><a href="https://rida-2006.github.io/ummahconnect/">View UmmahConnect ↗</a></article>
+        <article class="card"><h3>Ornibot</h3><p>The Robo Butterfly.</p><a href="https://rida-2006.github.io/Ornibot-The-Robo-butterfly/">View Ornibot ↗</a></article>
       </div>
     </section>
-
-    <footer>
-      <h2>Contact</h2>
-      <nav class="links" aria-label="Contact links">
-        <a href="https://github.com/Rida-2006?tab=repositories">GitHub ↗</a>
+    <section id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
+      <div class="contact">
+        <a href="mailto:ridafathima345@gmail.com">Email</a>
         <a href="https://www.linkedin.com/in/rida-fathima-204228314/">LinkedIn ↗</a>
-        <!-- Replace the following comment with your email link.
-        <a href="mailto:YOUR_EMAIL">Email</a>
-        -->
-      </nav>
-    </footer>
+        <a href="https://github.com/Rida-2006?tab=repositories">GitHub ↗</a>
+      </div>
+    </section>
   </main>
+</div>
+<footer>© 2026 Rida Fathima</footer>
+<script>
+const links = [...document.querySelectorAll("[data-section]")];
+const sections = links.map(link => document.getElementById(link.dataset.section));
+let activeSection;
 
-  <script>
-    const topics = [
-      "Software projects",
-      "Cybersecurity",
-      "Cloud computing",
-      "Women in Engineering"
-    ];
-    const focus = document.querySelector("#focus");
-    const toggle = document.querySelector("#rotation-toggle");
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let index = 0;
-    let timer = null;
+function showSection() {
+  const id = location.hash.slice(1);
+  const next = sections.find(section => section.id === id) || sections[0];
+  for (const section of sections) section.hidden = section !== next;
+  for (const link of links) {
+    if (link.dataset.section === next.id) link.setAttribute("aria-current", "page");
+    else link.removeAttribute("aria-current");
+  }
+  if (activeSection && activeSection !== next) {
+    const heading = next.querySelector("h2");
+    heading.tabIndex = -1;
+    heading.focus({preventScroll:true});
+    window.scrollTo(0, 0);
+  }
+  activeSection = next;
+  syncRotation();
+}
 
-    function setRotation(running) {
-      window.clearInterval(timer);
-      timer = null;
+const themeButton = document.getElementById("theme");
+function setTheme(dark) {
+  document.documentElement.dataset.theme = dark ? "dark" : "light";
+  themeButton.textContent = dark ? "☀" : "☾";
+  themeButton.setAttribute("aria-pressed", String(dark));
+}
+let savedTheme;
+try { savedTheme = localStorage.getItem("portfolio-theme"); } catch {}
+setTheme(savedTheme ? savedTheme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches);
+themeButton.hidden = false;
+themeButton.addEventListener("click", () => {
+  const dark = document.documentElement.dataset.theme !== "dark";
+  setTheme(dark);
+  try { localStorage.setItem("portfolio-theme", dark ? "dark" : "light"); } catch {}
+});
 
-      if (running) {
-        timer = window.setInterval(() => {
-          index = (index + 1) % topics.length;
-          focus.textContent = topics[index];
-        }, 2800);
-      }
-
-      toggle.textContent = running ? "Pause rotating text" : "Resume rotating text";
-    }
-
-    toggle.hidden = false;
-    toggle.addEventListener("click", () => setRotation(timer === null));
-    reducedMotion.addEventListener("change", event => setRotation(!event.matches));
-    setRotation(!reducedMotion.matches);
-  </script>
+const topics = ["Software projects", "Data security", "Cloud computing", "Women in Engineering"];
+const role = document.getElementById("role");
+const pause = document.getElementById("pause");
+const motion = matchMedia("(prefers-reduced-motion: reduce)");
+let index = 0;
+let timer;
+let paused = motion.matches;
+function syncRotation() {
+  clearInterval(timer);
+  pause.textContent = paused ? "Resume" : "Pause";
+  if (!paused && activeSection.id === "about" && !document.hidden) {
+    timer = setInterval(() => {
+      index = (index + 1) % topics.length;
+      role.textContent = topics[index];
+    }, 2800);
+  }
+}
+pause.addEventListener("click", () => { paused = !paused; syncRotation(); });
+motion.addEventListener("change", event => { paused = event.matches; syncRotation(); });
+document.addEventListener("visibilitychange", syncRotation);
+window.addEventListener("hashchange", showSection);
+document.getElementById("rotation").hidden = false;
+showSection();
+</script>
 </body>
 </html>
