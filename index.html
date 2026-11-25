@@ -83,6 +83,27 @@ footer { width:min(1032px,calc(100% - 24px)); margin:30px auto; color:var(--mute
   .content { padding:18px; min-height:0; }
   .profile-links { grid-template-columns:1fr 1fr; }
 }
+
+.layout { width:min(1320px, calc(100% - 32px)); gap:24px; margin-top:24px; }
+.content { padding:clamp(20px,3.5vw,48px); min-height:680px; }
+.profile { position:sticky; top:24px; }
+.glass-stage { border:1px solid var(--edge); border-radius:24px; margin-bottom:28px; padding:clamp(12px,3vw,30px); background:repeating-linear-gradient(0deg,transparent 0 33px,var(--line) 34px 35px),repeating-linear-gradient(90deg,transparent 0 33px,var(--line) 34px 35px),radial-gradient(ellipse at 90% 15%,var(--glow),var(--surface) 75%); }
+.glass-front { background:var(--card); border:1px solid var(--edge); border-radius:19px; backdrop-filter:blur(7px); padding:clamp(18px,4vw,38px); box-shadow:0 12px 32px var(--shadow); }
+.glass-front .rotation { margin-bottom:0; }
+:root[data-glass="solid"] .glass-front { background:var(--surface); backdrop-filter:none; }
+.section-block { margin:32px 0 0; }
+.section-block > p { margin-top:8px; color:var(--muted); }
+.pathway { list-style:none; padding-left:20px; margin-top:18px; border-left:2px solid var(--line); }
+.pathway li { position:relative; margin-bottom:14px; }
+.pathway li::before { content:""; position:absolute; left:-27px; top:.38rem; width:10px; height:10px; border:2px solid var(--accent); border-radius:50%; background:var(--surface); }
+.pathway span { display:block; color:var(--muted); }
+.flow { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:16px; }
+.flow summary { cursor:pointer; font-weight:650; }
+.flow summary:hover { text-decoration:underline; }
+.reviews-list { list-style:none; padding:0; display:grid; gap:12px; }
+.reviews-list .card p { white-space:pre-wrap; overflow-wrap:anywhere; }
+@media (max-width:830px) { .layout { grid-template-columns:1fr; } .profile { position:static; } .content { min-height:0; } }
+@media (max-width:600px) { .layout { width:calc(100% - 20px); } .flow { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
@@ -103,9 +124,13 @@ footer { width:min(1032px,calc(100% - 24px)); margin:30px auto; color:var(--mute
       <a href="#resume" data-section="resume">Resume</a>
       <a href="#projects" data-section="projects">Projects</a>
       <a href="#contact" data-section="contact">Contact</a>
+      <a href="#lab" data-section="lab">Lab</a>
+      <a href="#reviews" data-section="reviews">Reviews</a>
+      <button class="outline" id="glass" type="button" aria-pressed="true" hidden>Glass layer</button>
       <button class="outline" id="theme" type="button" aria-label="Dark theme" aria-pressed="false" hidden>☾</button>
     </nav>
     <section id="about" aria-labelledby="about-title">
+      <div class="glass-stage"><div class="glass-front">
       <h2 id="about-title">About Me</h2>
       <p class="lead">Information Systems Engineering student specializing in Data Security at Humber Polytechnic.</p>
       <div class="rotation" id="rotation" hidden>
@@ -113,12 +138,25 @@ footer { width:min(1032px,calc(100% - 24px)); margin:30px auto; color:var(--mute
         <span id="role" aria-hidden="true">Software projects</span>
         <button class="outline" id="pause" type="button">Pause</button>
       </div>
+      </div></div>
       <h3>What I'm Doing</h3>
       <div class="cards">
         <article class="card"><h4><span aria-hidden="true">🔐</span> Data Security</h4><p>My specialization at Humber Polytechnic.</p></article>
         <article class="card"><h4><span aria-hidden="true">☁️</span> Cloud Computing</h4><p>Lab Assistant at the FAST Cloud Computing Lab.</p></article>
         <article class="card"><h4><span aria-hidden="true">💻</span> Software Projects</h4><p>Honeyguard, GACI Online, UmmahConnect and Ornibot.</p></article>
         <article class="card"><h4><span aria-hidden="true">👩‍💻</span> Women in Engineering</h4><p>President.</p></article>
+      </div>
+      <div class="section-block">
+        <h3>Education, Experience &amp; Leadership</h3>
+        <ul class="pathway">
+          <li><strong>Humber Polytechnic</strong><span>Information Systems Engineering · Data Security specialization</span></li>
+          <li><strong>FAST Cloud Computing Lab</strong><span>Lab Assistant</span></li>
+          <li><strong>Women in Engineering</strong><span>President</span></li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h3>Explore My Work</h3>
+        <div class="contact"><a class="pill" href="#projects">Featured projects</a><a class="pill" href="#lab">Explore Honeyguard</a></div>
       </div>
     </section>
     <section id="resume" aria-labelledby="resume-title">
@@ -134,9 +172,33 @@ footer { width:min(1032px,calc(100% - 24px)); margin:30px auto; color:var(--mute
       <h2 id="projects-title">Featured Projects</h2>
       <div class="cards">
         <article class="card"><h3>GACI Online</h3><p>Software for faculty.</p></article>
-        <article class="card"><h3>Honeyguard</h3><p>Cybersecurity lab project for validating HTTP responses and streaming test events.</p></article>
+        <article class="card"><h3>Honeyguard</h3><p>Cybersecurity lab project for validating HTTP responses and streaming test events.</p><a href="#lab">Explore the lab flow ↗</a></article>
         <article class="card"><h3>UmmahConnect</h3><p>Winning project at TechNisaHacks.</p><a href="https://rida-2006.github.io/ummahconnect/">View UmmahConnect ↗</a></article>
         <article class="card"><h3>Ornibot</h3><p>The Robo Butterfly.</p><a href="https://rida-2006.github.io/Ornibot-The-Robo-butterfly/">View Ornibot ↗</a></article>
+      </div>
+    </section>
+    <section id="lab" aria-labelledby="lab-title">
+      <h2 id="lab-title">Honeyguard Lab</h2>
+      <p class="lead">A controlled cybersecurity lab for observing honeypot responses.</p>
+      <div class="section-block glass-stage"><div class="glass-front">
+        <h3>Lab Flow</h3>
+        <div class="flow">
+          <details class="card" open><summary>Approved test</summary><p>The lab panel starts an approved test and displays execution events.</p></details>
+          <details class="card"><summary>Honeypot response</summary><p>The panel receives the honeypot’s HTTP response.</p></details>
+          <details class="card"><summary>Results and evidence</summary><p>The panel validates responses and streams test events. A separate application uses honeypot evidence for monitoring and reporting.</p></details>
+        </div>
+      </div></div>
+      <div class="section-block"><h3>Tools Used</h3><p>Python, FastAPI, WebSockets, and React.</p></div>
+    </section>
+    <section id="reviews" aria-labelledby="reviews-title">
+      <h2 id="reviews-title">Reviews</h2>
+      <p class="lead">Public feedback about my work and professionalism.</p>
+      <div class="contact"><a class="pill" href="https://github.com/Rida-2006/Rida-sPortfolio/issues/5#new_comment_field">Leave a review on GitHub</a><a href="https://github.com/Rida-2006/Rida-sPortfolio/issues/5">View the review thread</a></div>
+      <p>Posting requires a GitHub account. Reviews are public.</p>
+      <div class="section-block">
+        <h3>Feedback</h3>
+        <p id="reviews-status" role="status">Open the review thread to read feedback.</p>
+        <ul class="reviews-list" id="reviews-list"></ul>
       </div>
     </section>
     <section id="contact" aria-labelledby="contact-title">
@@ -154,6 +216,41 @@ footer { width:min(1032px,calc(100% - 24px)); margin:30px auto; color:var(--mute
 const links = [...document.querySelectorAll("[data-section]")];
 const sections = links.map(link => document.getElementById(link.dataset.section));
 let activeSection;
+const glass = document.getElementById("glass");
+glass.hidden = false;
+glass.addEventListener("click", () => {
+  const solid = glass.getAttribute("aria-pressed") === "true";
+  glass.setAttribute("aria-pressed", String(!solid));
+  document.documentElement.dataset.glass = solid ? "solid" : "transparent";
+});
+
+let reviewsRequested = false;
+async function loadReviews() {
+  if (reviewsRequested) return;
+  reviewsRequested = true;
+  const status = document.getElementById("reviews-status");
+  const list = document.getElementById("reviews-list");
+  status.textContent = "Loading reviews…";
+  try {
+    const response = await fetch("https://api.github.com/repos/Rida-2006/Rida-sPortfolio/issues/5/comments?per_page=10");
+    if (!response.ok) throw new Error("Review request failed");
+    const reviews = await response.json();
+    for (const review of reviews) {
+      const item = document.createElement("li");
+      const author = document.createElement("strong");
+      const body = document.createElement("p");
+      item.className = "card";
+      author.textContent = review.user?.login || "GitHub reviewer";
+      body.textContent = review.body || "";
+      item.append(author, body);
+      list.append(item);
+    }
+    status.textContent = reviews.length ? "" : "No reviews yet.";
+  } catch {
+    reviewsRequested = false;
+    status.textContent = "Reviews are temporarily unavailable here. You can still read them on GitHub.";
+  }
+}
 
 function showSection() {
   const id = location.hash.slice(1);
@@ -170,6 +267,7 @@ function showSection() {
     window.scrollTo(0, 0);
   }
   activeSection = next;
+  if (next.id === "reviews") loadReviews();
   syncRotation();
 }
 
