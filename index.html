@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Rida Fathima, Information Systems Engineering Co-op student at Humber Polytechnic.">
+<meta name="description" content="Rida Fathima, Information Systems Engineering student at Humber Polytechnic.">
 <title>Rida Fathima | Portfolio</title>
 <style>
 :root{color-scheme:light;--paper:#faf5ec;--card:#fdfaf6;--ink:#2c201b;--muted:#66544a;--accent:#aa5144;--line:#e5d5c8;--tint:#f3e5da;--serif:Georgia,'Times New Roman',serif}
@@ -24,24 +24,40 @@ main section{padding-block:clamp(47px,8vw,96px);scroll-margin-top:65px} .pills{l
 .contact{background:var(--accent);color:#fff;text-align:center;padding:clamp(26px,7vw,60px);border-radius:24px}.contact h2{margin-bottom:10px}.contact em{color:inherit}.contact .button{margin-top:18px;overflow-wrap:anywhere} footer{text-align:center;color:var(--muted);padding:0 20px 34px;font-size:.85rem}
 @media(max-width:650px){.wrap{width:calc(100% - 30px)}.grid,.review-layout,.job{grid-template-columns:1fr}.job{gap:6px}.hero{min-height:0}.links{gap:10px}nav{flex-wrap:wrap}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-role{animation:none}}
+
+.hero-role { animation:none; margin-bottom:22px; min-height:2.5em; }
+.hero-role + .visually-hidden + .lead { margin-bottom:24px; }
+#typed-role[data-typing] { border-right:.06em solid currentColor; padding-right:.09em; }
+.visually-hidden { position:absolute; width:1px; height:1px; clip-path:inset(50%); overflow:hidden; white-space:nowrap; }
+.jobs { position:relative; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px 46px; border:0; }
+.jobs::before { content:""; position:absolute; top:24px; bottom:24px; width:2px; left:calc(50% - 1px); background:var(--line); }
+.job { position:relative; display:flex; flex-direction:column; gap:10px; border:1px solid var(--line); border-radius:20px; background:var(--card); padding:20px 24px; }
+.job::before { content:""; position:absolute; width:11px; height:11px; border-radius:50%; left:-30px; top:28px; background:var(--accent); border:2px solid var(--paper); }
+.job:nth-child(odd)::before { left:auto; right:-30px; }
+.job small { order:-1; color:var(--accent); }
+@media(max-width:650px) {
+  .jobs { grid-template-columns:1fr; gap:12px; padding-left:24px; }
+  .jobs::before { left:5px; }
+  .job::before,.job:nth-child(odd)::before { left:-26px; right:auto; }
+}
 </style></head><body>
 <div class="top"><nav class="wrap" aria-label="Portfolio navigation"><a class="wordmark" href="#home">Rida.</a><div class="links"><a href="#work">Work</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a></div></nav></div>
 <header id="home"><div class="wrap hero">
 <p class="muted">Hello, I’m</p><h1>Rida <em>Fathima</em></h1>
-<p class="hero-role">I <em>work in the cloud</em></p>
-<p class="lead">Third-year Information Systems Engineering (Co-op) student at Humber Polytechnic, specializing in Data Security and focused on cloud and software.</p>
-<p class="availability">Seeking a co-op from May 2027 · GTA, Canada</p>
+<p class="hero-role" aria-hidden="true">I <em id="typed-role">work in the cloud</em></p>
+<p class="visually-hidden">My work spans cloud computing, secure systems, and Women in Engineering leadership.</p>
+<p class="lead">I’m an Information Systems Engineering student at Humber Polytechnic specializing in Data Security. My interests span cloud computing, software, and secure systems.</p>
 <div class="links"><a class="button primary" href="https://github.com/Rida-2006?tab=repositories">GitHub</a><a class="button" href="https://www.linkedin.com/in/rida-fathima-204228314/">LinkedIn</a><a class="button" href="mailto:ridafathima345@gmail.com">Email</a><a class="button" href="assets/Rida-Fathima-Resume.pdf" download>Resume</a></div>
 </div></header>
 <main class="wrap">
 <section id="about"><h2>A little about me</h2><p class="lead">I enjoy understanding how technology works and making it easier for people to use. I want to help build reliable, secure systems where software, infrastructure, and security meet.</p>
 <ul class="pills" aria-label="Technical skills"><li>Python</li><li>Java</li><li>TypeScript</li><li>SQL</li><li>React</li><li>Next.js</li><li>FastAPI</li><li>AWS</li><li>Azure</li><li>Linux</li><li>Docker</li><li>Elasticsearch</li><li>Git</li><li>Raspberry Pi</li></ul></section>
-<section id="experience"><h2>Where I’ve been</h2><ul class="jobs">
+<section id="experience"><h2>Where I’ve been</h2><ol class="jobs" aria-label="Experience timeline">
 <li class="job"><h3>Cloud Computing Lab Assistant</h3><p>Humber Polytechnic · FAST Cloud Computing Lab. AWS and Azure support, secure device setup, and the GACI web app.</p><small>2026–present</small></li>
 <li class="job"><h3>President</h3><p>Humber Women in Engineering · Lead a 10-member executive team and organize events, panels, and partnerships.</p><small>2026–present</small></li>
 <li class="job"><h3>Robotics Instructor</h3><p>CODE-IT HACKS · Teach programming, electronics, and hands-on robotics.</p><small>2026</small></li>
 <li class="job"><h3>IT &amp; Admin Intern</h3><p>World Kongers Organization</p><small>2025–2026</small></li>
-</ul><ul class="pills" aria-label="Awards and training"><li>Dean’s Honour List</li><li>DMG MORI Leadership Scholarship</li><li>IGNITE Leadership Scholarship</li><li>Google Cybersecurity certificates</li><li>AWS Cloud 101</li></ul></section>
+</ol><ul class="pills" aria-label="Awards and training"><li>Dean’s Honour List</li><li>DMG MORI Leadership Scholarship</li><li>IGNITE Leadership Scholarship</li><li>Google Cybersecurity certificates</li><li>AWS Cloud 101</li></ul></section>
 <section id="work"><h2>Projects</h2><div class="grid">
 <article class="project"><small>Cybersecurity</small><h3><a href="#lab">HoneyGuard</a></h3><p>Controlled honeypot lab with live WebSocket streaming and Elastic dashboards. Presented at Omni Pulse.</p></article>
 <article class="project"><small>Best Beginner · TechNisaHacks</small><h3><a href="https://rida-2006.github.io/ummahconnect/">UmmahConnect</a></h3><p>Community discovery app with profiles, events, RSVPs, and messaging on Firebase.</p></article>
@@ -64,6 +80,31 @@ main section{padding-block:clamp(47px,8vw,96px);scroll-margin-top:65px} .pills{l
 <section id="contact"><div class="contact"><h2>Let’s work <em>together</em></h2><p>Open to internships, collaborations, and good conversations.</p><a class="button" href="mailto:ridafathima345@gmail.com">ridafathima345@gmail.com</a></div></section>
 </main><footer>© 2026 Rida Fathima</footer>
 <script>
+const typedRole = document.getElementById("typed-role");
+const motionPreference = matchMedia("(prefers-reduced-motion: reduce)");
+const rolePhrases = ["work in the cloud", "build secure systems", "lead Women in Engineering", "work in the cloud"];
+async function typeRoles() {
+  if (motionPreference.matches) return;
+  typedRole.dataset.typing = "";
+  const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+  for (const phrase of rolePhrases.slice(1)) {
+    await wait(580);
+    const current = typedRole.textContent;
+    for (let length = current.length - 1; length >= 0 && !motionPreference.matches; length--) {
+      typedRole.textContent = current.slice(0, length);
+      await wait(14);
+    }
+    for (let length = 1; length <= phrase.length && !motionPreference.matches; length++) {
+      typedRole.textContent = phrase.slice(0, length);
+      await wait(26);
+    }
+    if (motionPreference.matches) break;
+  }
+  typedRole.textContent = rolePhrases[0];
+  delete typedRole.dataset.typing;
+}
+typeRoles();
+
 const reviewForm = document.getElementById("review-form");
 const reviewStatus = document.getElementById("review-status");
 reviewForm.addEventListener("submit", event => {
