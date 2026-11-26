@@ -54,6 +54,43 @@ header { background:radial-gradient(ellipse at 100% 0,var(--hero-glow),transpare
 .project-detail h1 { font-size:clamp(2.7rem,7vw,5rem); }
 .project-detail h2 { font-size:1.75rem; margin:28px 0 10px; }
 .project-detail p { margin-bottom:16px; }
+
+:root {
+  --paper:#faf5ec; --card:#fdfaf6; --ink:#2c201b; --muted:#66544a;
+  --line:#e5d5c8; --tint:#f3e5da; --accent:#7545a6; --accent-fill:#a95043;
+  --nav:#faf5ecb8; --hero-glow:#f6ddd580; --glass-rim:#fffc;
+}
+:root[data-theme="dark"] {
+  --nav:#201727a8; --glass-rim:#dac1ee40; --accent:#ddb5f4;
+}
+html { scrollbar-width:none; }
+html::-webkit-scrollbar { display:none; }
+.top {
+  background:var(--nav); border-bottom:1px solid var(--glass-rim);
+  -webkit-backdrop-filter:blur(18px) saturate(145%);
+  backdrop-filter:blur(18px) saturate(145%);
+  box-shadow:0 6px 22px #26183713,inset 0 1px 0 var(--glass-rim);
+}
+.button,.project-link {
+  transition:transform 180ms ease,box-shadow 180ms ease,border-color 180ms ease;
+}
+@media (hover:hover) {
+  .button:hover,.project-link:hover { transform:translateY(-3px); }
+  .project-link:hover { box-shadow:0 12px 28px #34204218; }
+}
+.awards-window { overflow:hidden; margin-top:24px; }
+.awards-track { display:flex; width:max-content; animation:awards-scroll 32s linear infinite; }
+.awards-track .pills { flex:none; flex-wrap:nowrap; margin:0; padding-inline-end:8px; }
+.awards-track li { white-space:nowrap; }
+.awards-window:is(:hover,:focus-within) .awards-track { animation-play-state:paused; }
+@keyframes awards-scroll { to { transform:translateX(-50%); } }
+@media(prefers-reduced-motion:reduce) {
+  .button,.project-link { transition:none; }
+  .button:hover,.project-link:hover { transform:none; }
+  .awards-track { width:auto; animation:none; }
+  .awards-track .pills { flex-wrap:wrap; }
+  .awards-track [aria-hidden="true"] { display:none; }
+}
 </style></head>
 <body><div class="top"><nav class="wrap" aria-label="Portfolio navigation"><a class="wordmark" href="../index.html">Rida.</a><div class="links"><a href="../index.html#work">Back to projects</a><button id="theme" type="button" class="button theme-switch" aria-label="Switch color theme" hidden>☾</button></div></nav></div>
 <main class="wrap project-detail"><section><p class="muted">HTML, CSS, and JavaScript</p><h1>Ornibot</h1><p class="lead">Ornibot is a project website for a robotic butterfly.</p><h2>About the project</h2><p>The site was built from scratch with HTML, CSS, and JavaScript to present the project on the web.</p><a class="button primary" href="https://rida-2006.github.io/Ornibot-The-Robo-butterfly/" target="_blank" rel="noopener">Try the live demo (opens in a new tab)</a></section></main>

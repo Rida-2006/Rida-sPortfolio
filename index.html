@@ -54,6 +54,43 @@ header { background:radial-gradient(ellipse at 100% 0,var(--hero-glow),transpare
 .project-detail h1 { font-size:clamp(2.7rem,7vw,5rem); }
 .project-detail h2 { font-size:1.75rem; margin:28px 0 10px; }
 .project-detail p { margin-bottom:16px; }
+
+:root {
+  --paper:#faf5ec; --card:#fdfaf6; --ink:#2c201b; --muted:#66544a;
+  --line:#e5d5c8; --tint:#f3e5da; --accent:#7545a6; --accent-fill:#a95043;
+  --nav:#faf5ecb8; --hero-glow:#f6ddd580; --glass-rim:#fffc;
+}
+:root[data-theme="dark"] {
+  --nav:#201727a8; --glass-rim:#dac1ee40; --accent:#ddb5f4;
+}
+html { scrollbar-width:none; }
+html::-webkit-scrollbar { display:none; }
+.top {
+  background:var(--nav); border-bottom:1px solid var(--glass-rim);
+  -webkit-backdrop-filter:blur(18px) saturate(145%);
+  backdrop-filter:blur(18px) saturate(145%);
+  box-shadow:0 6px 22px #26183713,inset 0 1px 0 var(--glass-rim);
+}
+.button,.project-link {
+  transition:transform 180ms ease,box-shadow 180ms ease,border-color 180ms ease;
+}
+@media (hover:hover) {
+  .button:hover,.project-link:hover { transform:translateY(-3px); }
+  .project-link:hover { box-shadow:0 12px 28px #34204218; }
+}
+.awards-window { overflow:hidden; margin-top:24px; }
+.awards-track { display:flex; width:max-content; animation:awards-scroll 32s linear infinite; }
+.awards-track .pills { flex:none; flex-wrap:nowrap; margin:0; padding-inline-end:8px; }
+.awards-track li { white-space:nowrap; }
+.awards-window:is(:hover,:focus-within) .awards-track { animation-play-state:paused; }
+@keyframes awards-scroll { to { transform:translateX(-50%); } }
+@media(prefers-reduced-motion:reduce) {
+  .button,.project-link { transition:none; }
+  .button:hover,.project-link:hover { transform:none; }
+  .awards-track { width:auto; animation:none; }
+  .awards-track .pills { flex-wrap:wrap; }
+  .awards-track [aria-hidden="true"] { display:none; }
+}
 </style></head><body>
 <div class="top"><nav class="wrap" aria-label="Portfolio navigation"><a class="wordmark" href="#home">Rida.</a><div class="links"><a href="#work">Work</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a><button id="theme" type="button" class="button theme-switch" aria-label="Switch color theme" hidden>☾</button></div></nav></div>
 <header id="home"><div class="wrap hero">
@@ -61,7 +98,7 @@ header { background:radial-gradient(ellipse at 100% 0,var(--hero-glow),transpare
 <p class="hero-role" aria-hidden="true">I <em id="typed-role">work in the cloud</em></p>
 <p class="visually-hidden">My work spans cloud computing, secure systems, and Women in Engineering leadership.</p>
 <p class="lead">I’m an Information Systems Engineering student at Humber Polytechnic specializing in Data Security. My interests span cloud computing, software, and secure systems.</p>
-<div class="links"><a class="button primary" href="https://github.com/Rida-2006?tab=repositories">GitHub</a><a class="button" href="https://www.linkedin.com/in/rida-fathima-204228314/">LinkedIn</a><a class="button" href="mailto:ridafathima345@gmail.com">Email</a><a class="button" href="assets/Rida-Fathima-Resume.pdf" download>Resume</a></div>
+<div class="links"><a class="button" href="https://github.com/Rida-2006?tab=repositories">GitHub</a><a class="button" href="https://www.linkedin.com/in/rida-fathima-204228314/">LinkedIn</a><a class="button" href="mailto:ridafathima345@gmail.com">Email</a></div>
 </div></header>
 <main class="wrap">
 <section id="about"><h2>A little about me</h2><p class="lead">I enjoy understanding how technology works and making it easier for people to use. I want to help build reliable, secure systems where software, infrastructure, and security meet.</p>
@@ -71,7 +108,7 @@ header { background:radial-gradient(ellipse at 100% 0,var(--hero-glow),transpare
 <li class="job"><h3>President</h3><p>Humber Women in Engineering · Lead a 10-member executive team and organize events, panels, and partnerships.</p><small>2026–present</small></li>
 <li class="job"><h3>Robotics Instructor</h3><p>CODE-IT HACKS · Teach programming, electronics, and hands-on robotics.</p><small>2026</small></li>
 <li class="job"><h3>IT &amp; Admin Intern</h3><p>World Kongers Organization</p><small>2025–2026</small></li>
-</ol><ul class="pills" aria-label="Awards and training"><li>Dean’s Honour List</li><li>DMG MORI Leadership Scholarship</li><li>IGNITE Leadership Scholarship</li><li>Google Cybersecurity certificates</li><li>AWS Cloud 101</li></ul></section>
+</ol><div class="awards-window" tabindex="0" aria-label="Scrolling awards and training"><div class="awards-track"><ul class="pills" aria-label="Awards and training"><li>Dean’s Honour List</li><li>DMG MORI Leadership Scholarship</li><li>IGNITE Leadership Scholarship</li><li>Google Cybersecurity certificates</li><li>AWS Cloud 101</li></ul><ul class="pills" aria-hidden="true"><li>Dean’s Honour List</li><li>DMG MORI Leadership Scholarship</li><li>IGNITE Leadership Scholarship</li><li>Google Cybersecurity certificates</li><li>AWS Cloud 101</li></ul></div></div></section>
 <section id="work"><h2>Projects</h2><div class="grid">
 <a class="project project-link" href="projects/honeyguard.html"><small>Cybersecurity</small><h3>HoneyGuard</h3><p>Controlled honeypot lab with live WebSocket streaming and Elastic dashboards. Presented at Omni Pulse.</p></a>
 <a class="project project-link" href="projects/ummahconnect.html"><small>Best Beginner · TechNisaHacks</small><h3>UmmahConnect</h3><p>Community discovery app with profiles, events, RSVPs, and messaging on Firebase.</p></a>
