@@ -3,40 +3,43 @@
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
 
-  canvas.width = 720;
-  canvas.height = 640;
+  const width = 720;
+  const height = 640;
+  let scale = 1;
   const motion = matchMedia("(prefers-reduced-motion: reduce)");
   const gradient = ctx.createLinearGradient(125, 505, 590, 115);
-  gradient.addColorStop(0, "rgba(180,66,236,0)");
-  gradient.addColorStop(.23, "rgba(237,113,255,.9)");
-  gradient.addColorStop(.49, "rgba(146,139,255,.75)");
-  gradient.addColorStop(.73, "rgba(47,178,253,.8)");
-  gradient.addColorStop(1, "rgba(70,107,231,0)");
+  gradient.addColorStop(0, "rgba(122,43,86,0)");
+  gradient.addColorStop(.23, "rgba(241,98,154,.9)");
+  gradient.addColorStop(.49, "rgba(252,152,177,.75)");
+  gradient.addColorStop(.73, "rgba(193,80,124,.8)");
+  gradient.addColorStop(1, "rgba(126,44,94,0)");
 
   function draw(time) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, width, height);
     ctx.strokeStyle = gradient;
     ctx.lineJoin = "round";
     ctx.globalCompositeOperation = "lighter";
-    for (let ribbon = 0; ribbon < 15; ribbon++) {
+    for (let ribbon = 0; ribbon < 13; ribbon++) {
       ctx.beginPath();
-      for (let step = 0; step <= 150; step++) {
-        const angle = step * Math.PI * 2 / 150;
+      for (let step = 0; step <= 200; step++) {
+        const angle = step * Math.PI * 2 / 200;
         const fold = Math.sin(3 * angle - time + ribbon * .045);
         const radius = 179 + 35 * fold + 16 * Math.sin(2 * angle + time);
-        const spread = (ribbon - 7) * (3.5 + 2 * Math.cos(angle + time));
+        const spread = (ribbon - 6) * (3.5 + 2 * Math.cos(angle + time));
         const x = 367 + (radius + spread) * Math.cos(angle);
         const y = 314 + (radius * 1.09 + spread) * Math.sin(angle) + 24 * Math.cos(2 * angle);
         if (step === 0) ctx.moveTo(x, y);
         else ctx.lineTo(x, y);
       }
       ctx.closePath();
-      ctx.lineWidth = 13;
-      ctx.filter = "blur(21px)";
-      ctx.globalAlpha = .22;
-      ctx.stroke();
-      ctx.lineWidth = 2.5;
-      ctx.filter = "blur(3px)";
+      if (ribbon % 4 === 0) {
+        ctx.lineWidth = 28;
+        ctx.filter = `blur(${18 * scale}px)`;
+        ctx.globalAlpha = .34;
+        ctx.stroke();
+      }
+      ctx.lineWidth = 2.8;
+      ctx.filter = "none";
       ctx.globalAlpha = .19;
       ctx.stroke();
     }
@@ -76,7 +79,16 @@
     updateMotion();
   });
   document.addEventListener("visibilitychange", updateMotion);
-  draw(time);
+  resize();
+  function resize() {
+    const pixels = Math.min(1920, Math.max(1, Math.round(canvas.clientWidth * devicePixelRatio)));
+    scale = pixels / width;
+    canvas.width = pixels;
+    canvas.height = Math.round(height * scale);
+    ctx.setTransform(scale, 0, 0, scale, 0, 0);
+    draw(time);
+  }
+  new ResizeObserver(resize).observe(canvas);
   button.hidden = false;
   updateMotion();
 })();

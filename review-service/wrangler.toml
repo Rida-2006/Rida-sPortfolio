@@ -1,0 +1,9 @@
+name = "plain-darkness-1f49"
+main = "worker.mjs"
+compatibility_date = "2026-11-25"
+workers_dev = true
+
+[[d1_databases]]
+binding = "REVIEWS"
+database_name = "rida-review"
+database_id = "11aeac3a-fcd2-4106-9546-e1096c5d15c8"
