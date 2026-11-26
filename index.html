@@ -113,7 +113,6 @@ html { scroll-behavior:smooth; }
 .role-track { display:flex; flex-wrap:wrap; gap:8px; list-style:none; padding:0; margin:0; animation:roles-slide 4.5s ease-out both; }
 .role-track li { font-size:.9rem; font-weight:650; padding:.3rem .65rem; background:var(--card); border:1px solid var(--line); border-radius:999px; }
 @keyframes roles-slide { from { transform:translateX(75%); } to { transform:translateX(0); } }
-#review-thread .utterances { max-width:none; }
 @media (max-width:600px) { .content > section { scroll-margin-top:155px; } }
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .role-track { animation:none; } }
 
@@ -148,6 +147,18 @@ html { scroll-behavior:smooth; }
     backdrop-filter:blur(16px) saturate(145%);
   }
 }
+
+.review-form { display:grid; gap:14px; margin-top:20px; max-width:700px; }
+.review-form label { display:grid; gap:5px; font-weight:600; }
+.review-form input:not([type="checkbox"]), .review-form textarea {
+  width:100%; padding:.65rem .8rem; font:inherit; color:var(--text);
+  background:var(--surface); border:1px solid var(--line); border-radius:10px;
+}
+.review-form textarea { resize:vertical; }
+.review-form .review-consent { display:flex; align-items:flex-start; gap:8px; font-size:.9rem; }
+.review-form .review-consent input { margin-top:.3em; accent-color:var(--accent); }
+.review-form button { justify-self:start; border:0; }
+#review-status:empty { display:none; }
 </style>
 </head>
 <body>
@@ -234,11 +245,19 @@ html { scroll-behavior:smooth; }
       </div></div>
       <div class="section-block"><h3>Tools Used</h3><p>Python, FastAPI, WebSockets, and React.</p></div>
     </section>
-    <section id="reviews" aria-labelledby="reviews-title">
+        <section id="reviews" aria-labelledby="reviews-title">
       <h2 id="reviews-title">Reviews</h2>
-      <p class="lead">Share your experience working with Rida or feedback on a project. Reviews are public, and posting requires GitHub sign-in.</p>
-      <div id="review-thread" class="section-block"></div>
-      <noscript><p>Enable JavaScript to load the review thread.</p></noscript>
+      <p class="lead">Share feedback on a project or your experience working with Rida.</p>
+      <form id="review-form" class="card review-form">
+        <label>Your name <input name="name" autocomplete="name" required maxlength="80"></label>
+        <label>Project or context (optional) <input name="context" maxlength="100"></label>
+        <label>Your review <textarea name="feedback" rows="5" required maxlength="600"></textarea></label>
+        <label class="review-consent"><input type="checkbox" required> Rida may publish my name and review on this portfolio.</label>
+        <p>The button opens an email draft for you to send. Rida can then review it for publication.</p>
+        <button class="pill" type="submit">Open email draft</button>
+        <p id="review-status" role="status"></p>
+      </form>
+      <div class="section-block"><h3>Published Reviews</h3><p>No published reviews yet.</p></div>
     </section>
     <section id="contact" aria-labelledby="contact-title">
       <h2 id="contact-title">Contact</h2>
@@ -256,10 +275,7 @@ const themeButton = document.getElementById("theme");
 function setTheme(dark) {
   document.documentElement.dataset.theme = dark ? "dark" : "light";
   themeButton.setAttribute("aria-pressed", String(dark));
-  document.querySelector("#review-thread iframe")?.contentWindow?.postMessage({
-    type: "set-theme",
-    theme: dark ? "github-dark" : "github-light"
-  }, "https://utteranc.es");
+
 }
 let savedTheme;
 try { savedTheme = localStorage.getItem("portfolio-theme"); } catch {}
@@ -271,18 +287,23 @@ themeButton.addEventListener("click", () => {
   try { localStorage.setItem("portfolio-theme", dark ? "dark" : "light"); } catch {}
 });
 
-const reviewThread = document.getElementById("review-thread");
-const reviewWidget = document.createElement("script");
-reviewWidget.src = "https://utteranc.es/client.js";
-reviewWidget.setAttribute("repo", "Rida-2006/Rida-sPortfolio");
-reviewWidget.setAttribute("issue-number", "5");
-reviewWidget.setAttribute("theme", document.documentElement.dataset.theme === "dark" ? "github-dark" : "github-light");
-reviewWidget.crossOrigin = "anonymous";
-reviewWidget.async = true;
-reviewWidget.addEventListener("error", () => {
-  reviewThread.textContent = "Reviews couldn’t load. Refresh the page to try again.";
+const reviewForm = document.getElementById("review-form");
+const reviewStatus = document.getElementById("review-status");
+reviewForm.addEventListener("submit", event => {
+  event.preventDefault();
+  const data = new FormData(reviewForm);
+  const name = String(data.get("name")).trim();
+  const context = String(data.get("context")).trim();
+  const feedback = String(data.get("feedback")).trim();
+  if (!name || !feedback) {
+    reviewStatus.textContent = "Enter your name and review.";
+    return;
+  }
+  const body = [`Name: ${name}`, context ? `Project or context: ${context}` : "", "", feedback, "", "I agree that Rida may publish my name and review on her portfolio."].filter((line, index) => line || index !== 1).join("\r\n");
+  const address = document.getElementById("contact").querySelector('a[href^="mailto:"]').href;
+  reviewStatus.textContent = "Send the draft from your email app. Your review has not been sent yet.";
+  window.location.href = address + "?subject=Portfolio%20review&body=" + encodeURIComponent(body);
 });
-reviewThread.append(reviewWidget);
 </script>
 </body>
 </html>
