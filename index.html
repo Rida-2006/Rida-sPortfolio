@@ -1,292 +1,69 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Rida Fathima, Information Systems Engineering student specializing in Data Security at Humber Polytechnic.">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Rida Fathima, Information Systems Engineering Co-op student at Humber Polytechnic.">
 <title>Rida Fathima | Portfolio</title>
 <style>
-:root {
-  color-scheme: light;
-  --page:#efebe5; --text:#37263e; --muted:#65566e; --accent:#765986;
-  --on-accent:#fff; --surface:#f8f4ebee; --card:#ffffff44; --edge:#fffc;
-  --line:#d8cbe0; --glow:#b594c4; --shadow:#50395b24;
-}
-:root[data-theme="dark"] {
-  color-scheme:dark;
-  --page:#1c1722; --text:#f7eef6; --muted:#d2bedc; --accent:#c6add6;
-  --on-accent:#261b2e; --surface:#251b2eed; --card:#31263b88; --edge:#b9a4c340;
-  --line:#b9a4c34d; --glow:#785b8b; --shadow:#08050c55;
-}
-* { box-sizing:border-box; }
-body {
-  margin:0; min-height:100vh; color:var(--text); font:1rem/1.55 system-ui,sans-serif;
-  background:radial-gradient(ellipse at 9% 6%, var(--glow), transparent 34%),
-    radial-gradient(ellipse at 92% 92%, var(--glow), transparent 32%), var(--page);
-}
-a { color:inherit; text-underline-offset:.2em; }
-button { font:inherit; color:inherit; cursor:pointer; }
-:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
-[hidden] { display:none !important; }
-.layout {
-  display:grid; grid-template-columns:280px minmax(0,1fr); align-items:start;
-  gap:18px; width:min(1032px, calc(100% - 24px)); margin:16px auto 0;
-}
-.panel {
-  border:1px solid var(--edge); border-radius:28px; box-shadow:0 14px 34px var(--shadow);
-  background:radial-gradient(ellipse at 55% 92%, var(--glow), transparent 40%), var(--surface);
-}
-.profile {
-  padding:28px 22px; text-align:center;
-  background:radial-gradient(ellipse at 8% 30%, var(--glow), transparent 68%), var(--surface);
-}
-.portrait {
-  display:block; width:150px; height:150px; object-fit:cover; object-position:center 35%;
-  margin:0 auto 14px; border:5px solid var(--edge); border-radius:35px;
-}
-h1,h2,h3,p { margin:0; }
-h1,h2,h3 { font-family:Georgia,serif; line-height:1.17; }
-h1 { font-size:1.75rem; }
-.subtitle {
-  margin:.2rem 0 .8rem; color:var(--muted); font-size:.76rem;
-  font-weight:700; letter-spacing:.12em; text-transform:uppercase;
-}
-.profile-links { display:grid; gap:11px; text-align:left; }
-.profile-links a { display:block; border:1px solid var(--line); border-radius:16px; padding:9px 13px; text-decoration:none; }
-.profile-links small { display:block; color:var(--muted); text-transform:uppercase; }
-.profile-links a:hover,.nav a:hover,.outline:hover { background:var(--card); text-decoration:underline; }
-.pill { display:inline-block; border-radius:999px; padding:.7rem 1.45rem; background:var(--accent); color:var(--on-accent); font-weight:650; text-decoration:none; }
-.profile .pill { margin-top:20px; }
-.content { padding:22px 28px 30px; min-height:500px; }
-.nav { display:flex; flex-wrap:wrap; justify-content:flex-end; align-items:center; gap:4px; margin-bottom:24px; }
-.nav a,.outline { border-radius:999px; padding:.45rem .8rem; font-size:.9rem; text-decoration:none; }
-
-.outline { background:transparent; border:1px solid var(--line); }
-#theme { width:39px; height:39px; padding:0; margin-left:3px; }
-h2 { font-size:clamp(1.8rem,4vw,2rem); }
-h2::after { content:""; display:block; width:40px; height:5px; margin:10px 0 20px; border-radius:5px; background:var(--accent); }
-h3 { font-size:1.3rem; }
-.lead { color:var(--muted); font-size:1.08rem; }
-
-.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,185px),1fr)); gap:14px; margin-top:16px; }
-.card { padding:18px 19px; border:1px solid var(--edge); border-radius:21px; background:var(--card); }
-.card h3,.card h4 { margin:0; font:inherit; font-weight:650; }
-.card p { margin-top:5px; color:var(--muted); font-size:.9rem; }
-.card a { display:inline-block; margin-top:.55rem; font-size:.9rem; font-weight:650; }
-.contact { display:flex; flex-wrap:wrap; gap:14px 20px; margin-top:16px; }
-footer { width:min(1032px,calc(100% - 24px)); margin:30px auto; color:var(--muted); text-align:center; font-size:.9rem; }
-@media (max-width:680px) {
-  .layout { grid-template-columns:1fr; }
-  .nav { justify-content:flex-start; margin-bottom:20px; }
-  .content { padding:18px; min-height:0; }
-  .profile-links { grid-template-columns:1fr 1fr; }
-}
-
-.layout { width:min(1320px, calc(100% - 32px)); gap:24px; margin-top:24px; }
-.content { padding:clamp(20px,3.5vw,48px); min-height:680px; }
-.profile { position:sticky; top:24px; }
-.glass-stage { border:1px solid var(--edge); border-radius:24px; margin-bottom:28px; padding:clamp(12px,3vw,30px); background:repeating-linear-gradient(0deg,transparent 0 33px,var(--line) 34px 35px),repeating-linear-gradient(90deg,transparent 0 33px,var(--line) 34px 35px),radial-gradient(ellipse at 90% 15%,var(--glow),var(--surface) 75%); }
-.glass-front { background:var(--card); border:1px solid var(--edge); border-radius:19px; backdrop-filter:blur(7px); padding:clamp(18px,4vw,38px); box-shadow:0 12px 32px var(--shadow); }
-
-.section-block { margin:32px 0 0; }
-.section-block > p { margin-top:8px; color:var(--muted); }
-.pathway { list-style:none; padding-left:20px; margin-top:18px; border-left:2px solid var(--line); }
-.pathway li { position:relative; margin-bottom:14px; }
-.pathway li::before { content:""; position:absolute; left:-27px; top:.38rem; width:10px; height:10px; border:2px solid var(--accent); border-radius:50%; background:var(--surface); }
-.pathway span { display:block; color:var(--muted); }
-.flow { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:16px; }
-.flow summary { cursor:pointer; font-weight:650; }
-.flow summary:hover { text-decoration:underline; }
-
-
-@media (max-width:830px) { .layout { grid-template-columns:1fr; } .profile { position:static; } .content { min-height:0; } }
-@media (max-width:600px) { .layout { width:calc(100% - 20px); } .flow { grid-template-columns:1fr; } }
-
-html { scroll-behavior:smooth; }
-.content > section { scroll-margin-top:110px; }
-.content > section + section { margin-top:clamp(38px,7vw,84px); padding-top:clamp(24px,5vw,48px); border-top:1px solid var(--line); }
-.nav { position:sticky; top:0; z-index:2; padding:10px; margin:-10px -10px 24px;
-  background:var(--surface); backdrop-filter:blur(12px); border:1px solid var(--edge); border-radius:20px; }
-#theme { width:auto; height:auto; padding:.45rem .8rem; }
-.glass-stage { background:radial-gradient(ellipse at 90% 15%,var(--glow),var(--surface) 75%); }
-.role-banner { overflow:hidden; margin-top:16px; }
-.role-track { display:flex; flex-wrap:wrap; gap:8px; list-style:none; padding:0; margin:0; animation:roles-slide 4.5s ease-out both; }
-.role-track li { font-size:.9rem; font-weight:650; padding:.3rem .65rem; background:var(--card); border:1px solid var(--line); border-radius:999px; }
-@keyframes roles-slide { from { transform:translateX(75%); } to { transform:translateX(0); } }
-@media (max-width:600px) { .content > section { scroll-margin-top:155px; } }
-@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .role-track { animation:none; } }
-
-/* Frosted surfaces with a brighter rim and soft lavender reflections. */
-:root {
-  --glass-fill:#f8f2f5b8; --glass-rim:#fff9;
-  --glass-reflection:#fff8; --glass-shade:#a181b344;
-}
-:root[data-theme="dark"] {
-  --glass-fill:#2b2038cc; --glass-rim:#eadaf06b;
-  --glass-reflection:#e6c9f32c; --glass-shade:#7b5b9860;
-}
-.glass-stage {
-  background:
-    radial-gradient(ellipse at 79% -16%, var(--glass-reflection), transparent 48%),
-    radial-gradient(ellipse at 10% 100%, var(--glow), transparent 64%),
-    linear-gradient(126deg, var(--surface) 25%, var(--glass-shade) 56%, var(--surface) 85%);
-}
-.nav, .glass-front {
-  background:
-    radial-gradient(ellipse at 9% 0%, var(--glass-reflection), transparent 53%),
-    linear-gradient(138deg, transparent 46%, var(--glass-shade) 63%, transparent 85%),
-    var(--surface);
-  border:1px solid var(--glass-rim);
-  box-shadow:inset 0 1px 2px var(--glass-rim),
-    inset 0 -2px 9px var(--glass-reflection), 0 10px 24px var(--shadow);
-}
-@supports ((backdrop-filter:blur(12px)) or (-webkit-backdrop-filter:blur(12px))) {
-  .nav, .glass-front {
-    background-color:var(--glass-fill);
-    -webkit-backdrop-filter:blur(16px) saturate(145%);
-    backdrop-filter:blur(16px) saturate(145%);
-  }
-}
-
-.review-form { display:grid; gap:14px; margin-top:20px; max-width:700px; }
-.review-form label { display:grid; gap:5px; font-weight:600; }
-.review-form input:not([type="checkbox"]), .review-form textarea {
-  width:100%; padding:.65rem .8rem; font:inherit; color:var(--text);
-  background:var(--surface); border:1px solid var(--line); border-radius:10px;
-}
-.review-form textarea { resize:vertical; }
-.review-form .review-consent { display:flex; align-items:flex-start; gap:8px; font-size:.9rem; }
-.review-form .review-consent input { margin-top:.3em; accent-color:var(--accent); }
-.review-form button { justify-self:start; border:0; }
-#review-status:empty { display:none; }
-</style>
-</head>
-<body>
-<div class="layout">
-  <aside class="profile panel" aria-label="Profile">
-    <img class="portrait" src="images/profile.webp" width="150" height="150" alt="Rida Fathima">
-    <h1>Rida Fathima</h1>
-    <p class="subtitle">Information Systems Engineering Student</p>
-    <div class="profile-links">
-      <a href="https://www.linkedin.com/in/rida-fathima-204228314/"><small>LinkedIn</small>View my profile</a>
-      <a href="https://github.com/Rida-2006?tab=repositories"><small>GitHub</small>See my code</a>
-    </div>
-    <a class="pill" href="assets/Rida-Fathima-Resume.pdf" download>Download Resume</a>
-  </aside>
-  <main class="content panel">
-    <nav class="nav" aria-label="Portfolio sections">
-      <a href="#about">About</a>
-      <a href="#resume">Resume</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-      <a href="#lab">Lab</a>
-      <a href="#reviews">Reviews</a>
-
-      <button class="outline" id="theme" type="button" aria-pressed="false" hidden>Dark mode</button>
-    </nav>
-    <section id="about" aria-labelledby="about-title">
-      <div class="glass-stage"><div class="glass-front">
-      <h2 id="about-title">About Me</h2>
-      <p class="lead">Information Systems Engineering student specializing in Data Security at Humber Polytechnic.</p>
-      <div class="role-banner" aria-label="Areas of work">
-        <ul class="role-track">
-          <li>Software projects</li><li>Data security</li><li>Cloud computing</li><li>Women in Engineering</li>
-        </ul>
-      </div>
-      </div></div>
-      <h3>What I'm Doing</h3>
-      <div class="cards">
-        <article class="card"><h4>Data Security</h4><p>My specialization at Humber Polytechnic.</p></article>
-        <article class="card"><h4>Cloud Computing</h4><p>Lab Assistant at the FAST Cloud Computing Lab.</p></article>
-        <article class="card"><h4>Software Projects</h4><p>Honeyguard, GACI Online, UmmahConnect and Ornibot.</p></article>
-        <article class="card"><h4>Women in Engineering</h4><p>President.</p></article>
-      </div>
-      <div class="section-block">
-        <h3>Education, Experience &amp; Leadership</h3>
-        <ul class="pathway">
-          <li><strong>Humber Polytechnic</strong><span>Information Systems Engineering · Data Security specialization</span></li>
-          <li><strong>FAST Cloud Computing Lab</strong><span>Lab Assistant</span></li>
-          <li><strong>Women in Engineering</strong><span>President</span></li>
-        </ul>
-      </div>
-      <div class="section-block">
-        <h3>Explore My Work</h3>
-        <div class="contact"><a class="pill" href="#projects">Featured projects</a><a class="pill" href="#lab">Explore Honeyguard</a></div>
-      </div>
-    </section>
-    <section id="resume" aria-labelledby="resume-title">
-      <h2 id="resume-title">Resume</h2>
-      <div class="cards">
-        <article class="card"><h3>Education</h3><p>Information Systems Engineering, Data Security · Humber Polytechnic</p></article>
-        <article class="card"><h3>Experience</h3><p>Lab Assistant · FAST Cloud Computing Lab</p></article>
-        <article class="card"><h3>Leadership</h3><p>President · Women in Engineering</p></article>
-      </div>
-      <p class="contact"><a href="assets/Rida-Fathima-Resume.pdf" download>Download resume (PDF)</a></p>
-    </section>
-    <section id="projects" aria-labelledby="projects-title">
-      <h2 id="projects-title">Featured Projects</h2>
-      <div class="cards">
-        <article class="card"><h3>GACI Online</h3><p>Software for faculty.</p></article>
-        <article class="card"><h3>Honeyguard</h3><p>Cybersecurity lab project for validating HTTP responses and streaming test events.</p><a href="#lab">Explore the lab flow</a></article>
-        <article class="card"><h3>UmmahConnect</h3><p>Winning project at TechNisaHacks.</p><a href="https://rida-2006.github.io/ummahconnect/">View UmmahConnect</a></article>
-        <article class="card"><h3>Ornibot</h3><p>The Robo Butterfly.</p><a href="https://rida-2006.github.io/Ornibot-The-Robo-butterfly/">View Ornibot</a></article>
-      </div>
-    </section>
-    <section id="lab" aria-labelledby="lab-title">
-      <h2 id="lab-title">Honeyguard Lab</h2>
-      <p class="lead">A controlled cybersecurity lab for observing honeypot responses.</p>
-      <div class="section-block glass-stage"><div class="glass-front">
-        <h3>Lab Flow</h3>
-        <div class="flow">
-          <details class="card" open><summary>Approved test</summary><p>The lab panel starts an approved test and displays execution events.</p></details>
-          <details class="card"><summary>Honeypot response</summary><p>The panel receives the honeypot’s HTTP response.</p></details>
-          <details class="card"><summary>Results and evidence</summary><p>The panel validates responses and streams test events. A separate application uses honeypot evidence for monitoring and reporting.</p></details>
-        </div>
-      </div></div>
-      <div class="section-block"><h3>Tools Used</h3><p>Python, FastAPI, WebSockets, and React.</p></div>
-    </section>
-        <section id="reviews" aria-labelledby="reviews-title">
-      <h2 id="reviews-title">Reviews</h2>
-      <p class="lead">Share feedback on a project or your experience working with Rida.</p>
-      <form id="review-form" class="card review-form">
+:root{color-scheme:light;--paper:#faf5ec;--card:#fdfaf6;--ink:#2c201b;--muted:#66544a;--accent:#aa5144;--line:#e5d5c8;--tint:#f3e5da;--serif:Georgia,'Times New Roman',serif}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--ink);font:1rem/1.6 system-ui,sans-serif} a{color:inherit} :focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.wrap{width:min(100% - 40px,1000px);margin-inline:auto} .top{position:sticky;top:0;z-index:2;background:#faf5ecf2;backdrop-filter:blur(12px)}
+nav{display:flex;justify-content:space-between;align-items:center;gap:14px;min-height:62px} nav a{text-decoration:none} nav a:hover,.project a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:.25em} .wordmark{font:italic 1.25rem var(--serif)}
+.links,.pills{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px} .links{font-size:.9rem}
+header{background:radial-gradient(ellipse at 100% 0,#f6ddd580,transparent 42%)} .hero{min-height:min(650px,85vh);display:grid;align-content:center;justify-items:start;padding-block:65px}
+h1,h2,h3,p{margin:0} h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.12}
+h1{font-size:clamp(3.3rem,9vw,7rem);letter-spacing:-.055em;margin:.12em 0 .23em} h2{font-size:clamp(2.1rem,5vw,3.35rem);margin-bottom:26px} h3{font-size:1.45rem} em{font-weight:inherit;color:var(--accent)}
+.hero-role{font:clamp(1.5rem,4vw,2.15rem) var(--serif);margin-bottom:22px;animation:slide 1.2s ease-out both}
+@keyframes slide{from{transform:translateX(32px);opacity:0}to{transform:translateX(0);opacity:1}}
+.lead,.muted,.project p,.job p{color:var(--muted)} .lead{max-width:63ch} .availability{margin:16px 0 24px;background:var(--tint);padding:.35em .9em;border-radius:999px;font-size:.85rem}
+.button{display:inline-block;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:.55rem 1.1rem;background:var(--card);font:inherit;font-size:.9rem;cursor:pointer;color:var(--ink)} .button.primary{background:var(--accent);color:white;border-color:var(--accent)} .button:hover{box-shadow:0 0 0 2px var(--line)}
+main section{padding-block:clamp(47px,8vw,96px);scroll-margin-top:65px} .pills{list-style:none;padding:0;margin:24px 0 0;gap:8px} .pills li{padding:.3rem .85rem;border-radius:999px;background:var(--tint);font-size:.86rem}
+.jobs{margin:0;padding:0;list-style:none;border-top:1px solid var(--line)} .job{display:grid;grid-template-columns:minmax(155px,1fr) 2fr auto;gap:20px;padding:20px 0;border-bottom:1px solid var(--line)} .job h3{font-size:1.2rem}.job small{color:var(--muted);white-space:nowrap}
+.grid,.review-layout{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}.grid{align-items:stretch}
+.project,.review-form,.empty{padding:clamp(18px,3vw,27px);border:1px solid var(--line);border-radius:23px;background:var(--card)} .project p,.review-form p{margin-top:9px;font-size:.92rem} .project a{text-decoration:none}.project small{display:block;color:var(--accent);margin-bottom:12px}
+.lab{margin-top:22px}.lab summary{cursor:pointer;font-weight:650}.lab p{margin-top:10px}
+.review-form{display:grid;gap:12px}.review-form label{display:grid;gap:5px;font-size:.88rem}.review-form input:not([type=radio],[type=checkbox]),textarea{width:100%;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:.65rem;font:inherit}.review-form textarea{resize:vertical}.review-form fieldset{margin:0;padding:0;border:0}.review-form legend{font-size:.88rem}.rating{display:flex;flex-wrap:wrap;gap:10px}.rating label,.review-form .review-consent{display:flex;align-items:flex-start;gap:4px}.review-form input{accent-color:var(--accent)} #review-status:empty{display:none}.empty{border-style:dashed;text-align:center;background:transparent;color:var(--muted)}
+.contact{background:var(--accent);color:#fff;text-align:center;padding:clamp(26px,7vw,60px);border-radius:24px}.contact h2{margin-bottom:10px}.contact em{color:inherit}.contact .button{margin-top:18px;overflow-wrap:anywhere} footer{text-align:center;color:var(--muted);padding:0 20px 34px;font-size:.85rem}
+@media(max-width:650px){.wrap{width:calc(100% - 30px)}.grid,.review-layout,.job{grid-template-columns:1fr}.job{gap:6px}.hero{min-height:0}.links{gap:10px}nav{flex-wrap:wrap}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-role{animation:none}}
+</style></head><body>
+<div class="top"><nav class="wrap" aria-label="Portfolio navigation"><a class="wordmark" href="#home">Rida.</a><div class="links"><a href="#work">Work</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a></div></nav></div>
+<header id="home"><div class="wrap hero">
+<p class="muted">Hello, I’m</p><h1>Rida <em>Fathima</em></h1>
+<p class="hero-role">I <em>work in the cloud</em></p>
+<p class="lead">Third-year Information Systems Engineering (Co-op) student at Humber Polytechnic, specializing in Data Security and focused on cloud and software.</p>
+<p class="availability">Seeking a co-op from May 2027 · GTA, Canada</p>
+<div class="links"><a class="button primary" href="https://github.com/Rida-2006?tab=repositories">GitHub</a><a class="button" href="https://www.linkedin.com/in/rida-fathima-204228314/">LinkedIn</a><a class="button" href="mailto:ridafathima345@gmail.com">Email</a><a class="button" href="assets/Rida-Fathima-Resume.pdf" download>Resume</a></div>
+</div></header>
+<main class="wrap">
+<section id="about"><h2>A little about me</h2><p class="lead">I enjoy understanding how technology works and making it easier for people to use. I want to help build reliable, secure systems where software, infrastructure, and security meet.</p>
+<ul class="pills" aria-label="Technical skills"><li>Python</li><li>Java</li><li>TypeScript</li><li>SQL</li><li>React</li><li>Next.js</li><li>FastAPI</li><li>AWS</li><li>Azure</li><li>Linux</li><li>Docker</li><li>Elasticsearch</li><li>Git</li><li>Raspberry Pi</li></ul></section>
+<section id="experience"><h2>Where I’ve been</h2><ul class="jobs">
+<li class="job"><h3>Cloud Computing Lab Assistant</h3><p>Humber Polytechnic · FAST Cloud Computing Lab. AWS and Azure support, secure device setup, and the GACI web app.</p><small>2026–present</small></li>
+<li class="job"><h3>President</h3><p>Humber Women in Engineering · Lead a 10-member executive team and organize events, panels, and partnerships.</p><small>2026–present</small></li>
+<li class="job"><h3>Robotics Instructor</h3><p>CODE-IT HACKS · Teach programming, electronics, and hands-on robotics.</p><small>2026</small></li>
+<li class="job"><h3>IT &amp; Admin Intern</h3><p>World Kongers Organization</p><small>2025–2026</small></li>
+</ul><ul class="pills" aria-label="Awards and training"><li>Dean’s Honour List</li><li>DMG MORI Leadership Scholarship</li><li>IGNITE Leadership Scholarship</li><li>Google Cybersecurity certificates</li><li>AWS Cloud 101</li></ul></section>
+<section id="work"><h2>Projects</h2><div class="grid">
+<article class="project"><small>Cybersecurity</small><h3><a href="#lab">HoneyGuard</a></h3><p>Controlled honeypot lab with live WebSocket streaming and Elastic dashboards. Presented at Omni Pulse.</p></article>
+<article class="project"><small>Best Beginner · TechNisaHacks</small><h3><a href="https://rida-2006.github.io/ummahconnect/">UmmahConnect</a></h3><p>Community discovery app with profiles, events, RSVPs, and messaging on Firebase.</p></article>
+<article class="project"><small>HTML, CSS, and JavaScript</small><h3><a href="https://rida-2006.github.io/Ornibot-The-Robo-butterfly/">Ornibot</a></h3><p>Hand-coded website for a robotic butterfly.</p></article>
+<article class="project"><small>TypeScript</small><h3>Humber Women in Engineering</h3><p>Website for the club I lead at Humber.</p></article>
+<article class="project"><h3>GACI Online</h3><p>Software for faculty.</p></article>
+</div>
+<details id="lab" class="project lab"><summary>How the HoneyGuard lab works</summary><p>An approved lab test generates a honeypot response. The panel validates the response and streams test events. A separate application uses the evidence for monitoring and reporting.</p></details>
+</section>
+<section id="reviews"><h2>What people say</h2><div class="review-layout"><div><h3>Worked with Rida?</h3><form id="review-form" class="card review-form">
         <label>Your name <input name="name" autocomplete="name" required maxlength="80"></label>
         <label>Project or context (optional) <input name="context" maxlength="100"></label>
+        <fieldset><legend>Rating (optional)</legend><div class="rating"><label><input type="radio" name="rating" value="1"> 1</label><label><input type="radio" name="rating" value="2"> 2</label><label><input type="radio" name="rating" value="3"> 3</label><label><input type="radio" name="rating" value="4"> 4</label><label><input type="radio" name="rating" value="5"> 5</label></div></fieldset>
         <label>Your review <textarea name="feedback" rows="5" required maxlength="600"></textarea></label>
         <label class="review-consent"><input type="checkbox" required> Rida may publish my name and review on this portfolio.</label>
         <p>The button opens an email draft for you to send. Rida can then review it for publication.</p>
         <button class="pill" type="submit">Open email draft</button>
         <p id="review-status" role="status"></p>
-      </form>
-      <div class="section-block"><h3>Published Reviews</h3><p>No published reviews yet.</p></div>
-    </section>
-    <section id="contact" aria-labelledby="contact-title">
-      <h2 id="contact-title">Contact</h2>
-      <div class="contact">
-        <a href="mailto:ridafathima345@gmail.com">Email</a>
-        <a href="https://www.linkedin.com/in/rida-fathima-204228314/">LinkedIn</a>
-        <a href="https://github.com/Rida-2006?tab=repositories">GitHub</a>
-      </div>
-    </section>
-  </main>
-</div>
-<footer>© 2026 Rida Fathima</footer>
+      </form></div><p class="empty">No published reviews yet.</p></div></section>
+<section id="contact"><div class="contact"><h2>Let’s work <em>together</em></h2><p>Open to internships, collaborations, and good conversations.</p><a class="button" href="mailto:ridafathima345@gmail.com">ridafathima345@gmail.com</a></div></section>
+</main><footer>© 2026 Rida Fathima</footer>
 <script>
-const themeButton = document.getElementById("theme");
-function setTheme(dark) {
-  document.documentElement.dataset.theme = dark ? "dark" : "light";
-  themeButton.setAttribute("aria-pressed", String(dark));
-
-}
-let savedTheme;
-try { savedTheme = localStorage.getItem("portfolio-theme"); } catch {}
-setTheme(savedTheme ? savedTheme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches);
-themeButton.hidden = false;
-themeButton.addEventListener("click", () => {
-  const dark = document.documentElement.dataset.theme !== "dark";
-  setTheme(dark);
-  try { localStorage.setItem("portfolio-theme", dark ? "dark" : "light"); } catch {}
-});
-
 const reviewForm = document.getElementById("review-form");
 const reviewStatus = document.getElementById("review-status");
 reviewForm.addEventListener("submit", event => {
@@ -294,16 +71,16 @@ reviewForm.addEventListener("submit", event => {
   const data = new FormData(reviewForm);
   const name = String(data.get("name")).trim();
   const context = String(data.get("context")).trim();
+  const rating = data.get("rating");
   const feedback = String(data.get("feedback")).trim();
   if (!name || !feedback) {
     reviewStatus.textContent = "Enter your name and review.";
     return;
   }
-  const body = [`Name: ${name}`, context ? `Project or context: ${context}` : "", "", feedback, "", "I agree that Rida may publish my name and review on her portfolio."].filter((line, index) => line || index !== 1).join("\r\n");
+  const body = [`Name: ${name}`, context ? `Project or context: ${context}` : "", rating ? `Rating: ${rating}/5` : "", "", feedback, "", "I agree that Rida may publish my name and review on her portfolio."].filter((line, index) => line || index !== 1).join("\r\n");
   const address = document.getElementById("contact").querySelector('a[href^="mailto:"]').href;
   reviewStatus.textContent = "Send the draft from your email app. Your review has not been sent yet.";
   window.location.href = address + "?subject=Portfolio%20review&body=" + encodeURIComponent(body);
 });
-</script>
-</body>
-</html>
+
+</script></body></html>
