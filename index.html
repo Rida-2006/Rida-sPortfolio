@@ -93,11 +93,34 @@ html::-webkit-scrollbar { display:none; }
   .awards-track .pills { flex-wrap:wrap; }
   .awards-track [aria-hidden="true"] { display:none; }
 }
+
+.top { background:none; border:0; box-shadow:none; backdrop-filter:none; padding:8px 0; }
+.top nav { min-height:58px; padding:5px 16px; border:1px solid var(--glass-rim); border-radius:30px;
+  background:linear-gradient(120deg,#ffffff24,transparent 55%),var(--nav);
+  backdrop-filter:blur(22px) saturate(155%); -webkit-backdrop-filter:blur(22px) saturate(155%);
+  box-shadow:inset 0 1px 0 var(--glass-rim),0 8px 24px #29183e20; }
+.top .wordmark { font:700 .91rem system-ui,sans-serif; letter-spacing:.07em; text-transform:uppercase; white-space:nowrap; }
+main section { scroll-margin-top:105px; }
+.project { background:color-mix(in srgb,var(--card) 78%,transparent); box-shadow:inset 0 1px 0 var(--glass-rim); }
+.hero-role button { font:inherit; color:inherit; background:none; border:0; padding:0; cursor:pointer; text-align:left; }
+.review-form .button { width:100%; }
+.review-form .button:disabled { opacity:.65; cursor:default; box-shadow:none; transform:none; }
+.reviews-kicker { color:var(--accent); text-transform:uppercase; letter-spacing:.19em; font-size:.78rem; margin-bottom:6px; }
+.rating { display:flex; gap:4px; }
+.rating label { position:relative; display:inline-flex; cursor:pointer; }
+.rating input { position:absolute; opacity:0; }
+.rating span { color:var(--accent); font-size:1.35rem; line-height:1.4; }
+.rating input:focus-visible + span { outline:2px solid var(--accent); outline-offset:3px; }
+.rating label:has(~ label input:checked) span,.rating label:has(input:checked) span { color:var(--accent); }
+.rating:has(input:checked) label:has(input:not(:checked)):not(:has(~ label input:checked)) span { opacity:.42; }
+.reviews-feed { display:grid; gap:12px; }
+.review-entry p { margin-top:8px; white-space:pre-wrap; overflow-wrap:anywhere; }
+@media(max-width:650px) { .top nav { gap:4px; padding:8px 12px; } .top .links { gap:7px 10px; } main section { scroll-margin-top:125px; } }
 </style></head><body>
-<div class="top"><nav class="wrap" aria-label="Portfolio navigation"><a class="wordmark" href="#home">Rida.</a><div class="links"><a href="#work">Work</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a><button id="theme" type="button" class="button theme-switch" aria-label="Switch color theme" hidden>☾</button></div></nav></div>
+<div class="top"><nav class="wrap" aria-label="Portfolio navigation"><a class="wordmark" href="#home">Rida Fathima</a><div class="links"><a href="#about">About</a><a href="#work">Projects</a><a href="#experience">Experience</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a><button id="theme" type="button" class="button theme-switch" aria-label="Switch color theme" hidden>☾</button></div></nav></div>
 <header id="home"><div class="wrap hero">
 <p class="muted">Hello, I’m</p><h1>Rida <em>Fathima</em></h1>
-<p class="hero-role" aria-hidden="true">I <em id="typed-role">work in the cloud</em></p>
+<p class="hero-role"><button id="type-toggle" type="button" aria-label="Pause changing introduction">I <em id="typed-role" aria-hidden="true">work in the cloud</em></button></p>
 <p class="visually-hidden">My work spans cloud computing, secure systems, and Women in Engineering leadership.</p>
 <p class="lead">I’m an Information Systems Engineering student at Humber Polytechnic specializing in Data Security. My interests span cloud computing, software, and secure systems.</p>
 <div class="links"><a class="button" href="https://github.com/Rida-2006?tab=repositories">GitHub</a><a class="button" href="https://www.linkedin.com/in/rida-fathima-204228314/">LinkedIn</a><a class="button" href="mailto:ridafathima345@gmail.com">Email</a></div>
@@ -118,35 +141,63 @@ html::-webkit-scrollbar { display:none; }
 <a class="project project-link" href="projects/women-in-engineering.html"><small>TypeScript</small><h3>Humber Women in Engineering</h3><p>Website for the club I lead at Humber.</p></a>
 <a class="project project-link" href="projects/gaci-online.html"><small>Faculty software</small><h3>GACI Online</h3><p>Software for faculty.</p></a>
 </div></section>
-<section id="reviews"><h2>What people say</h2><p class="empty">No published reviews yet.</p></section>
+<section id="reviews">
+<p class="reviews-kicker">Kind words</p><h2>What people say</h2>
+<div class="review-layout">
+<form class="review-form" id="review-form" data-endpoint="">
+<h3>Worked with Rida?</h3><p>Share a note about her work and professionalism.</p>
+<label><input aria-label="Your name" placeholder="Your name" name="name" required maxlength="80" autocomplete="name"></label>
+<label><input aria-label="Role or how you know Rida (optional)" placeholder="Role or how you know Rida (optional)" name="context" maxlength="120"></label>
+<fieldset><legend class="visually-hidden">Rating</legend><div class="rating">
+<label><input type="radio" name="rating" value="1" aria-label="1 out of 5 stars"><span aria-hidden="true">★</span></label><label><input type="radio" name="rating" value="2" aria-label="2 out of 5 stars"><span aria-hidden="true">★</span></label><label><input type="radio" name="rating" value="3" aria-label="3 out of 5 stars"><span aria-hidden="true">★</span></label><label><input type="radio" name="rating" value="4" aria-label="4 out of 5 stars"><span aria-hidden="true">★</span></label><label><input type="radio" name="rating" value="5" aria-label="5 out of 5 stars" checked><span aria-hidden="true">★</span></label>
+</div></fieldset>
+<label><textarea aria-label="Your review or comment" placeholder="Your review or comment…" name="body" rows="4" required maxlength="1000"></textarea></label>
+<button type="submit" class="button primary" disabled>Post review</button>
+<p id="review-status" role="status">Public posting is pending setup.</p>
+</form>
+<div id="reviews-feed" class="reviews-feed"><p class="empty">No reviews yet.</p></div>
+</div></section>
 <section id="contact"><div class="contact"><h2>Let’s work <em>together</em></h2><p>Open to internships, collaborations, and good conversations.</p><a class="button" href="mailto:ridafathima345@gmail.com">ridafathima345@gmail.com</a></div></section>
 </main><footer>© 2026 Rida Fathima</footer>
 <script>
-const typedRole = document.getElementById("typed-role");
-const motionPreference = matchMedia("(prefers-reduced-motion: reduce)");
-const rolePhrases = ["work in the cloud", "build secure systems", "lead Women in Engineering", "work in the cloud"];
-async function typeRoles() {
-  if (motionPreference.matches) return;
-  typedRole.dataset.typing = "";
-  const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
-  for (const phrase of rolePhrases.slice(1)) {
-    await wait(580);
-    const current = typedRole.textContent;
-    for (let length = current.length - 1; length >= 0 && !motionPreference.matches; length--) {
-      typedRole.textContent = current.slice(0, length);
-      await wait(14);
-    }
-    for (let length = 1; length <= phrase.length && !motionPreference.matches; length++) {
-      typedRole.textContent = phrase.slice(0, length);
-      await wait(26);
-    }
-    if (motionPreference.matches) break;
-  }
-  typedRole.textContent = rolePhrases[0];
-  delete typedRole.dataset.typing;
+const role = document.getElementById("typed-role");
+const typeToggle = document.getElementById("type-toggle");
+const motion = matchMedia("(prefers-reduced-motion: reduce)");
+const phrases = ["work in the cloud", "build secure systems", "develop software", "teach robotics", "lead Women in Engineering"];
+let phrase = 0, deleting = true, timer, paused = false;
+function schedule(delay) {
+  clearTimeout(timer);
+  if (!paused && !motion.matches && !document.hidden) timer = setTimeout(typeStep, delay);
 }
-typeRoles();
-
+function typeStep() {
+  const text = role.textContent;
+  if (deleting) {
+    role.textContent = text.slice(0, -1);
+    if (text.length === 1) {
+      phrase = (phrase + 1) % phrases.length;
+      deleting = false;
+      schedule(220);
+    } else schedule(34);
+    return;
+  }
+  role.textContent = phrases[phrase].slice(0, text.length + 1);
+  deleting = role.textContent === phrases[phrase];
+  schedule(deleting ? 1700 : 55);
+}
+function refreshTyping() {
+  if (motion.matches) {
+    phrase = 0;
+    deleting = true;
+    role.textContent = phrases[0];
+  }
+  typeToggle.disabled = motion.matches;
+  typeToggle.setAttribute("aria-label", paused ? "Resume changing introduction" : "Pause changing introduction");
+  schedule(900);
+}
+typeToggle.addEventListener("click", () => { paused = !paused; refreshTyping(); });
+motion.addEventListener("change", refreshTyping);
+document.addEventListener("visibilitychange", refreshTyping);
+refreshTyping();
 const themeButton = document.getElementById("theme");
 const systemTheme = matchMedia("(prefers-color-scheme: dark)");
 let manualTheme;
@@ -165,4 +216,48 @@ themeButton.addEventListener("click", () => {
   applyTheme();
 });
 systemTheme.addEventListener("change", applyTheme);
+const form = document.getElementById("review-form");
+const endpoint = form.dataset.endpoint;
+const status = document.getElementById("review-status");
+const feed = document.getElementById("reviews-feed");
+const post = form.querySelector('button[type="submit"]');
+async function refreshReviews() {
+  const result = await fetch(endpoint);
+  if (!result.ok) throw new Error("Reviews unavailable");
+  const items = await result.json();
+  if (!items.length) return;
+  feed.replaceChildren();
+  for (const item of items) {
+    const entry = document.createElement("article");
+    entry.className = "project review-entry";
+    const name = document.createElement("h3");
+    name.textContent = item.name;
+    const meta = document.createElement("p");
+    meta.textContent = [item.context, item.rating + " out of 5 stars"].filter(Boolean).join(" · ");
+    const body = document.createElement("p");
+    body.textContent = item.body;
+    entry.append(name, meta, body);
+    feed.append(entry);
+  }
+}
+if (endpoint) {
+  post.disabled = false;
+  status.textContent = "Reviews may be published after moderation.";
+  refreshReviews().catch(() => { feed.textContent = "Reviews are temporarily unavailable."; });
+  form.addEventListener("submit", async event => {
+    event.preventDefault();
+    post.disabled = true;
+    try {
+      const result = await fetch(endpoint, {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(Object.fromEntries(new FormData(form)))
+      });
+      if (!result.ok) throw new Error("Submission failed");
+      form.reset();
+      status.textContent = "Thank you. Your review was submitted for moderation.";
+    } catch {
+      status.textContent = "Your review could not be sent. Please try again.";
+    } finally { post.disabled = false; }
+  });
+}
 </script></body></html>
