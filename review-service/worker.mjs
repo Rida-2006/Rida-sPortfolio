@@ -13,7 +13,7 @@ export default {
     if (request.method === "OPTIONS") return new Response(null, { headers, status: 204 });
     if (request.method === "GET") {
       const { results } = await env.REVIEWS.prepare(
-        "SELECT name, context, rating, body FROM reviews WHERE approved = 1 ORDER BY id DESC LIMIT 50"
+        "SELECT id, name, context, rating, body FROM reviews ORDER BY id DESC"
       ).all();
       return reply(results);
     }
@@ -47,8 +47,9 @@ export default {
       !Number.isInteger(rating) || rating < 1 || rating > 5) {
       return reply({ error: "Invalid review fields" }, 400);
     }
-    await env.REVIEWS.prepare("INSERT INTO reviews (name, context, body, rating) VALUES (?, ?, ?, ?)")
-      .bind(name, context, body, rating).run();
-    return reply({ submitted: true }, 201);
+    const review = await env.REVIEWS.prepare(
+      "INSERT INTO reviews (name, context, body, rating) VALUES (?, ?, ?, ?) RETURNING id, name, context, body, rating"
+    ).bind(name, context, body, rating).first();
+    return reply({ submitted: true, review }, 201);
   }
 };
