@@ -1,7 +1,8 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Rida Fathima, Information Systems Engineering student at Humber Polytechnic.">
 <title>Rida Fathima | Portfolio</title>
+<script src="assets/theme.js"></script>
 <style>
 :root{color-scheme:light;--paper:#faf5ec;--card:#fdfaf6;--ink:#2c201b;--muted:#66544a;--accent:#aa5144;--line:#e5d5c8;--tint:#f3e5da;--serif:Georgia,'Times New Roman',serif}
 *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--ink);font:1rem/1.6 system-ui,sans-serif} a{color:inherit} :focus-visible{outline:2px solid var(--accent);outline-offset:4px}
@@ -116,8 +117,12 @@ main section { scroll-margin-top:105px; }
 .reviews-feed { display:grid; gap:12px; }
 .review-entry p { margin-top:8px; white-space:pre-wrap; overflow-wrap:anywhere; }
 @media(max-width:650px) { .top nav { gap:4px; padding:8px 12px; } .top .links { gap:7px 10px; } main section { scroll-margin-top:125px; } }
-</style></head><body>
-<div class="top"><nav class="wrap" aria-label="Portfolio navigation"><a class="wordmark" href="#home">Rida Fathima</a><div class="links"><a href="#about">About</a><a href="#work">Projects</a><a href="#experience">Experience</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a><button id="theme" type="button" class="button theme-switch" aria-label="Switch color theme" hidden>☾</button></div></nav></div>
+</style>
+<link rel="stylesheet" href="assets/aurora.css">
+<script defer src="assets/aurora.js"></script>
+</head><body>
+<canvas class="aurora" aria-hidden="true"></canvas>
+<div class="top"><nav class="wrap" aria-label="Portfolio navigation"><a class="wordmark" href="#home">Rida Fathima</a><div class="links"><a href="#about">About</a><a href="#work">Projects</a><a href="#experience">Experience</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a><button id="background-motion" type="button" class="button theme-switch" hidden></button><button id="theme" type="button" class="button theme-switch" aria-label="Switch color theme" hidden>☾</button></div></nav></div>
 <header id="home"><div class="wrap hero">
 <p class="muted">Hello, I’m</p><h1>Rida <em>Fathima</em></h1>
 <p class="hero-role"><button id="type-toggle" type="button" aria-label="Pause changing introduction">I <em id="typed-role" aria-hidden="true">work in the cloud</em></button></p>
@@ -153,9 +158,9 @@ main section { scroll-margin-top:105px; }
 </div></fieldset>
 <label><textarea aria-label="Your review or comment" placeholder="Your review or comment…" name="body" rows="4" required maxlength="1000"></textarea></label>
 <button type="submit" class="button primary" disabled>Post review</button>
-<p id="review-status" role="status">Checking review availability…</p>
+<p id="review-status" role="status">Reviews may be published after moderation.</p>
 </form>
-<div id="reviews-feed" class="reviews-feed"><p class="empty">No reviews yet.</p></div>
+<div id="reviews-feed" class="reviews-feed" aria-live="polite"><p class="empty">Loading reviews…</p></div>
 </div></section>
 <section id="contact"><div class="contact"><h2>Let’s work <em>together</em></h2><p>Open to internships, collaborations, and good conversations.</p><a class="button" href="mailto:ridafathima345@gmail.com">ridafathima345@gmail.com</a></div></section>
 </main><footer>© 2026 Rida Fathima</footer>
@@ -198,35 +203,28 @@ typeToggle.addEventListener("click", () => { paused = !paused; refreshTyping(); 
 motion.addEventListener("change", refreshTyping);
 document.addEventListener("visibilitychange", refreshTyping);
 refreshTyping();
-const themeButton = document.getElementById("theme");
-const systemTheme = matchMedia("(prefers-color-scheme: dark)");
-let manualTheme;
-try { manualTheme = localStorage.getItem("portfolio-theme"); } catch {}
-function applyTheme() {
-  const dark = manualTheme ? manualTheme === "dark" : systemTheme.matches;
-  document.documentElement.dataset.theme = dark ? "dark" : "light";
-  themeButton.textContent = dark ? "☀" : "☾";
-  themeButton.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
-}
-applyTheme();
-themeButton.hidden = false;
-themeButton.addEventListener("click", () => {
-  manualTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-  try { localStorage.setItem("portfolio-theme", manualTheme); } catch {}
-  applyTheme();
-});
-systemTheme.addEventListener("change", applyTheme);
+
 const form = document.getElementById("review-form");
 const endpoint = form.dataset.endpoint;
-const status = document.getElementById("review-status");
+const reviewStatus = document.getElementById("review-status");
 const feed = document.getElementById("reviews-feed");
 const post = form.querySelector('button[type="submit"]');
+function showFeedMessage(message) {
+  const notice = document.createElement("p");
+  notice.className = "empty";
+  notice.textContent = message;
+  feed.replaceChildren(notice);
+}
+
 async function refreshReviews() {
-  const result = await fetch(endpoint);
+  const result = await fetch(endpoint, { signal: AbortSignal.timeout(10000) });
   if (!result.ok) throw new Error("Reviews unavailable");
   const items = await result.json();
   if (!Array.isArray(items)) throw new Error("Unexpected review response");
-  if (!items.length) return;
+  if (!items.length) {
+    showFeedMessage("No reviews yet.");
+    return;
+  }
   feed.replaceChildren();
   for (const item of items) {
     const entry = document.createElement("article");
@@ -241,28 +239,38 @@ async function refreshReviews() {
     feed.append(entry);
   }
 }
-if (endpoint) {
-  refreshReviews().then(() => {
+form.addEventListener("submit", async event => {
+  event.preventDefault();
+  if (post.disabled) return;
+  const review = Object.fromEntries(new FormData(form));
+  review.name = review.name.trim();
+  review.context = review.context.trim();
+  review.body = review.body.trim();
+  if (!review.name || !review.body) {
+    reviewStatus.textContent = "Enter your name and a review before posting.";
+    form.elements[review.name ? "body" : "name"].focus();
+    return;
+  }
+
+  post.disabled = true;
+  reviewStatus.textContent = "Sending your review…";
+  try {
+    const result = await fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(review)
+    });
+    if (result.status !== 201 || (await result.json()).submitted !== true) {
+      throw new Error("Submission failed");
+    }
+    form.reset();
+    reviewStatus.textContent = "Thank you. Your review was submitted for moderation.";
+  } catch {
+    reviewStatus.textContent = "Your review could not be confirmed. Your text is still here.";
+  } finally {
     post.disabled = false;
-    status.textContent = "Reviews may be published after moderation.";
-  }).catch(() => {
-    status.textContent = "Posting is temporarily unavailable. Refresh to try again.";
-    feed.textContent = "Reviews are temporarily unavailable.";
-  });
-  form.addEventListener("submit", async event => {
-    event.preventDefault();
-    post.disabled = true;
-    try {
-      const result = await fetch(endpoint, {
-        method:"POST", headers:{"Content-Type":"application/json"},
-        body:JSON.stringify(Object.fromEntries(new FormData(form)))
-      });
-      if (!result.ok) throw new Error("Submission failed");
-      form.reset();
-      status.textContent = "Thank you. Your review was submitted for moderation.";
-    } catch {
-      status.textContent = "Your review could not be sent. Please try again.";
-    } finally { post.disabled = false; }
-  });
-}
+  }
+});
+post.disabled = false;
+refreshReviews().catch(() => showFeedMessage("Reviews could not be loaded. Refresh to try again."));
 </script></body></html>

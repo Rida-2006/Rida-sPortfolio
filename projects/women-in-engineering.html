@@ -1,7 +1,8 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Website for the club I lead at Humber.">
 <title>Humber Women in Engineering | Rida Fathima</title>
+<script src="../assets/theme.js"></script>
 <style>
 :root{color-scheme:light;--paper:#faf5ec;--card:#fdfaf6;--ink:#2c201b;--muted:#66544a;--accent:#aa5144;--line:#e5d5c8;--tint:#f3e5da;--serif:Georgia,'Times New Roman',serif}
 *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--ink);font:1rem/1.6 system-ui,sans-serif} a{color:inherit} :focus-visible{outline:2px solid var(--accent);outline-offset:4px}
@@ -116,25 +117,12 @@ main section { scroll-margin-top:105px; }
 .reviews-feed { display:grid; gap:12px; }
 .review-entry p { margin-top:8px; white-space:pre-wrap; overflow-wrap:anywhere; }
 @media(max-width:650px) { .top nav { gap:4px; padding:8px 12px; } .top .links { gap:7px 10px; } main section { scroll-margin-top:125px; } }
-</style></head>
-<body><div class="top"><nav class="wrap" aria-label="Portfolio navigation"><a class="wordmark" href="../index.html">Rida Fathima</a><div class="links"><a href="../index.html#work">Back to projects</a><button id="theme" type="button" class="button theme-switch" aria-label="Switch color theme" hidden>☾</button></div></nav></div>
+</style>
+<link rel="stylesheet" href="../assets/aurora.css">
+<script defer src="../assets/aurora.js"></script>
+</head>
+<body>
+<canvas class="aurora" aria-hidden="true"></canvas>
+<div class="top"><nav class="wrap" aria-label="Portfolio navigation"><a class="wordmark" href="../index.html">Rida Fathima</a><div class="links"><a href="../index.html#work">Back to projects</a><button id="background-motion" type="button" class="button theme-switch" hidden></button><button id="theme" type="button" class="button theme-switch" aria-label="Switch color theme" hidden>☾</button></div></nav></div>
 <main class="wrap project-detail"><section><p class="muted">TypeScript</p><h1>Humber Women in Engineering</h1><p class="lead">A website for Humber Women in Engineering, the student club I lead.</p><h2>About the project</h2><p>The site gives the club a web presence. The club organizes events, panels, and partnerships.</p></section></main>
-<footer>© 2026 Rida Fathima</footer><script>const themeButton = document.getElementById("theme");
-const systemTheme = matchMedia("(prefers-color-scheme: dark)");
-let manualTheme;
-try { manualTheme = localStorage.getItem("portfolio-theme"); } catch {}
-function applyTheme() {
-  const dark = manualTheme ? manualTheme === "dark" : systemTheme.matches;
-  document.documentElement.dataset.theme = dark ? "dark" : "light";
-  themeButton.textContent = dark ? "☀" : "☾";
-  themeButton.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
-}
-applyTheme();
-themeButton.hidden = false;
-themeButton.addEventListener("click", () => {
-  manualTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-  try { localStorage.setItem("portfolio-theme", manualTheme); } catch {}
-  applyTheme();
-});
-systemTheme.addEventListener("change", applyTheme);
-</script></body></html>
+<footer>© 2026 Rida Fathima</footer></body></html>

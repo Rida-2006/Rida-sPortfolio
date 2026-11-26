@@ -1,0 +1,19 @@
+body { isolation: isolate; }
+
+.aurora {
+  position: fixed;
+  z-index: -1;
+  top: 3rem;
+  right: max(-5rem, calc((100vw - 1280px) / 2));
+  width: min(76vw, 860px);
+  height: auto;
+  pointer-events: none;
+  opacity: .72;
+}
+
+:root[data-theme="dark"] header { background: transparent; }
+:root[data-theme="light"] .aurora { opacity: .18; }
+
+@media (max-width: 650px) {
+  .aurora { top: 7rem; right: -25vw; width: 106vw; opacity: .46; }
+}
