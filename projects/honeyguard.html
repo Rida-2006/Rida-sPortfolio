@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Controlled honeypot lab with live WebSocket streaming and Elastic dashboards. Presented at Omni Pulse.">
+<title>HoneyGuard | Rida Fathima</title>
+<style>
+:root{color-scheme:light;--paper:#faf5ec;--card:#fdfaf6;--ink:#2c201b;--muted:#66544a;--accent:#aa5144;--line:#e5d5c8;--tint:#f3e5da;--serif:Georgia,'Times New Roman',serif}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--ink);font:1rem/1.6 system-ui,sans-serif} a{color:inherit} :focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.wrap{width:min(100% - 40px,1000px);margin-inline:auto} .top{position:sticky;top:0;z-index:2;background:#faf5ecf2;backdrop-filter:blur(12px)}
+nav{display:flex;justify-content:space-between;align-items:center;gap:14px;min-height:62px} nav a{text-decoration:none} nav a:hover,.project a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:.25em} .wordmark{font:italic 1.25rem var(--serif)}
+.links,.pills{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px} .links{font-size:.9rem}
+header{background:radial-gradient(ellipse at 100% 0,#f6ddd580,transparent 42%)} .hero{min-height:min(650px,85vh);display:grid;align-content:center;justify-items:start;padding-block:65px}
+h1,h2,h3,p{margin:0} h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.12}
+h1{font-size:clamp(3.3rem,9vw,7rem);letter-spacing:-.055em;margin:.12em 0 .23em} h2{font-size:clamp(2.1rem,5vw,3.35rem);margin-bottom:26px} h3{font-size:1.45rem} em{font-weight:inherit;color:var(--accent)}
+.hero-role{font:clamp(1.5rem,4vw,2.15rem) var(--serif);margin-bottom:22px;animation:slide 1.2s ease-out both}
+@keyframes slide{from{transform:translateX(32px);opacity:0}to{transform:translateX(0);opacity:1}}
+.lead,.muted,.project p,.job p{color:var(--muted)} .lead{max-width:63ch} .availability{margin:16px 0 24px;background:var(--tint);padding:.35em .9em;border-radius:999px;font-size:.85rem}
+.button{display:inline-block;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:.55rem 1.1rem;background:var(--card);font:inherit;font-size:.9rem;cursor:pointer;color:var(--ink)} .button.primary{background:var(--accent);color:white;border-color:var(--accent)} .button:hover{box-shadow:0 0 0 2px var(--line)}
+main section{padding-block:clamp(47px,8vw,96px);scroll-margin-top:65px} .pills{list-style:none;padding:0;margin:24px 0 0;gap:8px} .pills li{padding:.3rem .85rem;border-radius:999px;background:var(--tint);font-size:.86rem}
+.jobs{margin:0;padding:0;list-style:none;border-top:1px solid var(--line)} .job{display:grid;grid-template-columns:minmax(155px,1fr) 2fr auto;gap:20px;padding:20px 0;border-bottom:1px solid var(--line)} .job h3{font-size:1.2rem}.job small{color:var(--muted);white-space:nowrap}
+.grid,.review-layout{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}.grid{align-items:stretch}
+.project,.review-form,.empty{padding:clamp(18px,3vw,27px);border:1px solid var(--line);border-radius:23px;background:var(--card)} .project p,.review-form p{margin-top:9px;font-size:.92rem} .project a{text-decoration:none}.project small{display:block;color:var(--accent);margin-bottom:12px}
+.lab{margin-top:22px}.lab summary{cursor:pointer;font-weight:650}.lab p{margin-top:10px}
+.review-form{display:grid;gap:12px}.review-form label{display:grid;gap:5px;font-size:.88rem}.review-form input:not([type=radio],[type=checkbox]),textarea{width:100%;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:.65rem;font:inherit}.review-form textarea{resize:vertical}.review-form fieldset{margin:0;padding:0;border:0}.review-form legend{font-size:.88rem}.rating{display:flex;flex-wrap:wrap;gap:10px}.rating label,.review-form .review-consent{display:flex;align-items:flex-start;gap:4px}.review-form input{accent-color:var(--accent)} #review-status:empty{display:none}.empty{border-style:dashed;text-align:center;background:transparent;color:var(--muted)}
+.contact{background:var(--accent);color:#fff;text-align:center;padding:clamp(26px,7vw,60px);border-radius:24px}.contact h2{margin-bottom:10px}.contact em{color:inherit}.contact .button{margin-top:18px;overflow-wrap:anywhere} footer{text-align:center;color:var(--muted);padding:0 20px 34px;font-size:.85rem}
+@media(max-width:650px){.wrap{width:calc(100% - 30px)}.grid,.review-layout,.job{grid-template-columns:1fr}.job{gap:6px}.hero{min-height:0}.links{gap:10px}nav{flex-wrap:wrap}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-role{animation:none}}
+
+.hero-role { animation:none; margin-bottom:22px; min-height:2.5em; }
+.hero-role + .visually-hidden + .lead { margin-bottom:24px; }
+#typed-role[data-typing] { border-right:.06em solid currentColor; padding-right:.09em; }
+.visually-hidden { position:absolute; width:1px; height:1px; clip-path:inset(50%); overflow:hidden; white-space:nowrap; }
+.jobs { position:relative; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px 46px; border:0; }
+.jobs::before { content:""; position:absolute; top:24px; bottom:24px; width:2px; left:calc(50% - 1px); background:var(--line); }
+.job { position:relative; display:flex; flex-direction:column; gap:10px; border:1px solid var(--line); border-radius:20px; background:var(--card); padding:20px 24px; }
+.job::before { content:""; position:absolute; width:11px; height:11px; border-radius:50%; left:-30px; top:28px; background:var(--accent); border:2px solid var(--paper); }
+.job:nth-child(odd)::before { left:auto; right:-30px; }
+.job small { order:-1; color:var(--accent); }
+@media(max-width:650px) {
+  .jobs { grid-template-columns:1fr; gap:12px; padding-left:24px; }
+  .jobs::before { left:5px; }
+  .job::before,.job:nth-child(odd)::before { left:-26px; right:auto; }
+}
+
+:root { --paper:#f8f3fb; --card:#fffbff; --ink:#2e2038; --muted:#5f506b; --accent:#704484; --line:#dfd0e7; --tint:#eee1f4; --nav:#f8f3fbf2; --hero-glow:#dcc5edaa; --accent-fill:#704484; }
+:root[data-theme="dark"] { color-scheme:dark; --paper:#201727; --card:#2d2236; --ink:#f6ebfa; --muted:#ddcbe5; --accent:#ddb5eb; --line:#624f6c; --tint:#3d2b49; --nav:#201727f2; --hero-glow:#65427882; --accent-fill:#77468c; }
+.top { background:var(--nav); }
+header { background:radial-gradient(ellipse at 100% 0,var(--hero-glow),transparent 48%); }
+.button.primary,.contact { background:var(--accent-fill); color:white; border-color:var(--accent-fill); }
+.theme-switch { width:42px; height:42px; padding:0; font-size:1.15rem; }
+.project-link { display:block; color:inherit; text-decoration:none; }
+.project-link:hover,.project-link:focus-visible { border-color:var(--accent); }
+.project-link:hover h3 { color:var(--accent); text-decoration:underline; text-underline-offset:.2em; }
+.project-detail { max-width:740px; min-height:60vh; }
+.project-detail h1 { font-size:clamp(2.7rem,7vw,5rem); }
+.project-detail h2 { font-size:1.75rem; margin:28px 0 10px; }
+.project-detail p { margin-bottom:16px; }
+</style></head>
+<body><div class="top"><nav class="wrap" aria-label="Portfolio navigation"><a class="wordmark" href="../index.html">Rida.</a><div class="links"><a href="../index.html#work">Back to projects</a><button id="theme" type="button" class="button theme-switch" aria-label="Switch color theme" hidden>☾</button></div></nav></div>
+<main class="wrap project-detail"><section><p class="muted">Cybersecurity</p><h1>HoneyGuard</h1><p class="lead">HoneyGuard gives a controlled cybersecurity lab a way to observe how its honeypot responds to approved tests.</p><h2>About the project</h2><p>The panel validates HTTP responses and streams execution events to a live terminal. A separate application uses honeypot evidence for monitoring and reporting.</p></section></main>
+<footer>© 2026 Rida Fathima</footer><script>const themeButton = document.getElementById("theme");
+const systemTheme = matchMedia("(prefers-color-scheme: dark)");
+let manualTheme;
+try { manualTheme = localStorage.getItem("portfolio-theme"); } catch {}
+function applyTheme() {
+  const dark = manualTheme ? manualTheme === "dark" : systemTheme.matches;
+  document.documentElement.dataset.theme = dark ? "dark" : "light";
+  themeButton.textContent = dark ? "☀" : "☾";
+  themeButton.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+}
+applyTheme();
+themeButton.hidden = false;
+themeButton.addEventListener("click", () => {
+  manualTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  try { localStorage.setItem("portfolio-theme", manualTheme); } catch {}
+  applyTheme();
+});
+systemTheme.addEventListener("change", applyTheme);
+</script></body></html>

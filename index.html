@@ -40,8 +40,22 @@ main section{padding-block:clamp(47px,8vw,96px);scroll-margin-top:65px} .pills{l
   .jobs::before { left:5px; }
   .job::before,.job:nth-child(odd)::before { left:-26px; right:auto; }
 }
+
+:root { --paper:#f8f3fb; --card:#fffbff; --ink:#2e2038; --muted:#5f506b; --accent:#704484; --line:#dfd0e7; --tint:#eee1f4; --nav:#f8f3fbf2; --hero-glow:#dcc5edaa; --accent-fill:#704484; }
+:root[data-theme="dark"] { color-scheme:dark; --paper:#201727; --card:#2d2236; --ink:#f6ebfa; --muted:#ddcbe5; --accent:#ddb5eb; --line:#624f6c; --tint:#3d2b49; --nav:#201727f2; --hero-glow:#65427882; --accent-fill:#77468c; }
+.top { background:var(--nav); }
+header { background:radial-gradient(ellipse at 100% 0,var(--hero-glow),transparent 48%); }
+.button.primary,.contact { background:var(--accent-fill); color:white; border-color:var(--accent-fill); }
+.theme-switch { width:42px; height:42px; padding:0; font-size:1.15rem; }
+.project-link { display:block; color:inherit; text-decoration:none; }
+.project-link:hover,.project-link:focus-visible { border-color:var(--accent); }
+.project-link:hover h3 { color:var(--accent); text-decoration:underline; text-underline-offset:.2em; }
+.project-detail { max-width:740px; min-height:60vh; }
+.project-detail h1 { font-size:clamp(2.7rem,7vw,5rem); }
+.project-detail h2 { font-size:1.75rem; margin:28px 0 10px; }
+.project-detail p { margin-bottom:16px; }
 </style></head><body>
-<div class="top"><nav class="wrap" aria-label="Portfolio navigation"><a class="wordmark" href="#home">Rida.</a><div class="links"><a href="#work">Work</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a></div></nav></div>
+<div class="top"><nav class="wrap" aria-label="Portfolio navigation"><a class="wordmark" href="#home">Rida.</a><div class="links"><a href="#work">Work</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a><button id="theme" type="button" class="button theme-switch" aria-label="Switch color theme" hidden>☾</button></div></nav></div>
 <header id="home"><div class="wrap hero">
 <p class="muted">Hello, I’m</p><h1>Rida <em>Fathima</em></h1>
 <p class="hero-role" aria-hidden="true">I <em id="typed-role">work in the cloud</em></p>
@@ -59,24 +73,13 @@ main section{padding-block:clamp(47px,8vw,96px);scroll-margin-top:65px} .pills{l
 <li class="job"><h3>IT &amp; Admin Intern</h3><p>World Kongers Organization</p><small>2025–2026</small></li>
 </ol><ul class="pills" aria-label="Awards and training"><li>Dean’s Honour List</li><li>DMG MORI Leadership Scholarship</li><li>IGNITE Leadership Scholarship</li><li>Google Cybersecurity certificates</li><li>AWS Cloud 101</li></ul></section>
 <section id="work"><h2>Projects</h2><div class="grid">
-<article class="project"><small>Cybersecurity</small><h3><a href="#lab">HoneyGuard</a></h3><p>Controlled honeypot lab with live WebSocket streaming and Elastic dashboards. Presented at Omni Pulse.</p></article>
-<article class="project"><small>Best Beginner · TechNisaHacks</small><h3><a href="https://rida-2006.github.io/ummahconnect/">UmmahConnect</a></h3><p>Community discovery app with profiles, events, RSVPs, and messaging on Firebase.</p></article>
-<article class="project"><small>HTML, CSS, and JavaScript</small><h3><a href="https://rida-2006.github.io/Ornibot-The-Robo-butterfly/">Ornibot</a></h3><p>Hand-coded website for a robotic butterfly.</p></article>
-<article class="project"><small>TypeScript</small><h3>Humber Women in Engineering</h3><p>Website for the club I lead at Humber.</p></article>
-<article class="project"><h3>GACI Online</h3><p>Software for faculty.</p></article>
-</div>
-<details id="lab" class="project lab"><summary>How the HoneyGuard lab works</summary><p>An approved lab test generates a honeypot response. The panel validates the response and streams test events. A separate application uses the evidence for monitoring and reporting.</p></details>
-</section>
-<section id="reviews"><h2>What people say</h2><div class="review-layout"><div><h3>Worked with Rida?</h3><form id="review-form" class="card review-form">
-        <label>Your name <input name="name" autocomplete="name" required maxlength="80"></label>
-        <label>Project or context (optional) <input name="context" maxlength="100"></label>
-        <fieldset><legend>Rating (optional)</legend><div class="rating"><label><input type="radio" name="rating" value="1"> 1</label><label><input type="radio" name="rating" value="2"> 2</label><label><input type="radio" name="rating" value="3"> 3</label><label><input type="radio" name="rating" value="4"> 4</label><label><input type="radio" name="rating" value="5"> 5</label></div></fieldset>
-        <label>Your review <textarea name="feedback" rows="5" required maxlength="600"></textarea></label>
-        <label class="review-consent"><input type="checkbox" required> Rida may publish my name and review on this portfolio.</label>
-        <p>The button opens an email draft for you to send. Rida can then review it for publication.</p>
-        <button class="pill" type="submit">Open email draft</button>
-        <p id="review-status" role="status"></p>
-      </form></div><p class="empty">No published reviews yet.</p></div></section>
+<a class="project project-link" href="projects/honeyguard.html"><small>Cybersecurity</small><h3>HoneyGuard</h3><p>Controlled honeypot lab with live WebSocket streaming and Elastic dashboards. Presented at Omni Pulse.</p></a>
+<a class="project project-link" href="projects/ummahconnect.html"><small>Best Beginner · TechNisaHacks</small><h3>UmmahConnect</h3><p>Community discovery app with profiles, events, RSVPs, and messaging on Firebase.</p></a>
+<a class="project project-link" href="projects/ornibot.html"><small>HTML, CSS, and JavaScript</small><h3>Ornibot</h3><p>Hand-coded website for a robotic butterfly.</p></a>
+<a class="project project-link" href="projects/women-in-engineering.html"><small>TypeScript</small><h3>Humber Women in Engineering</h3><p>Website for the club I lead at Humber.</p></a>
+<a class="project project-link" href="projects/gaci-online.html"><small>Faculty software</small><h3>GACI Online</h3><p>Software for faculty.</p></a>
+</div></section>
+<section id="reviews"><h2>What people say</h2><p class="empty">No published reviews yet.</p></section>
 <section id="contact"><div class="contact"><h2>Let’s work <em>together</em></h2><p>Open to internships, collaborations, and good conversations.</p><a class="button" href="mailto:ridafathima345@gmail.com">ridafathima345@gmail.com</a></div></section>
 </main><footer>© 2026 Rida Fathima</footer>
 <script>
@@ -105,23 +108,22 @@ async function typeRoles() {
 }
 typeRoles();
 
-const reviewForm = document.getElementById("review-form");
-const reviewStatus = document.getElementById("review-status");
-reviewForm.addEventListener("submit", event => {
-  event.preventDefault();
-  const data = new FormData(reviewForm);
-  const name = String(data.get("name")).trim();
-  const context = String(data.get("context")).trim();
-  const rating = data.get("rating");
-  const feedback = String(data.get("feedback")).trim();
-  if (!name || !feedback) {
-    reviewStatus.textContent = "Enter your name and review.";
-    return;
-  }
-  const body = [`Name: ${name}`, context ? `Project or context: ${context}` : "", rating ? `Rating: ${rating}/5` : "", "", feedback, "", "I agree that Rida may publish my name and review on her portfolio."].filter((line, index) => line || index !== 1).join("\r\n");
-  const address = document.getElementById("contact").querySelector('a[href^="mailto:"]').href;
-  reviewStatus.textContent = "Send the draft from your email app. Your review has not been sent yet.";
-  window.location.href = address + "?subject=Portfolio%20review&body=" + encodeURIComponent(body);
+const themeButton = document.getElementById("theme");
+const systemTheme = matchMedia("(prefers-color-scheme: dark)");
+let manualTheme;
+try { manualTheme = localStorage.getItem("portfolio-theme"); } catch {}
+function applyTheme() {
+  const dark = manualTheme ? manualTheme === "dark" : systemTheme.matches;
+  document.documentElement.dataset.theme = dark ? "dark" : "light";
+  themeButton.textContent = dark ? "☀" : "☾";
+  themeButton.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+}
+applyTheme();
+themeButton.hidden = false;
+themeButton.addEventListener("click", () => {
+  manualTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  try { localStorage.setItem("portfolio-theme", manualTheme); } catch {}
+  applyTheme();
 });
-
+systemTheme.addEventListener("change", applyTheme);
 </script></body></html>
