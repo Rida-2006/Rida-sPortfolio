@@ -1,5 +1,7 @@
 # Portfolio reviews
 
-Deploy worker.mjs as a Cloudflare Worker. Create a D1 database, apply schema.sql, and bind the database to the Worker as REVIEWS. Set data-endpoint on the review form in index.html to the Worker's HTTPS /reviews URL. Configure a rate limit for POST /reviews before opening submissions.
+Deploy `worker.mjs` to the existing Cloudflare Worker and keep its existing D1 database bound as `REVIEWS`. For a fresh database, apply `schema.sql` before deployment. The form in `index.html` uses the Worker's `/reviews` URL.
 
-New reviews are pending. To publish one, inspect it in the D1 console and set approved to 1 for that review's id. Only approved reviews appear in the site's feed.
+The public feed includes existing and new comments, including entries previously held for moderation. The existing schema works without a migration. After a successful submission the Worker returns the saved review so the page can display it immediately. To remove a published review, locate its ID in the D1 console and delete that row.
+
+If the site is deployed before the Worker update, the previous Worker still accepts submissions for moderation. The site shows the author a copy in their browser until it appears in the public feed.
